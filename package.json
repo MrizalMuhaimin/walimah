@@ -1,25 +1,75 @@
 {
-  "name": "walimah",
+  "name": "walimah-fe",
   "version": "0.1.0",
   "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
   "dependencies": {
-    "@types/node": "20.2.5",
-    "@types/react": "18.2.8",
-    "@types/react-dom": "18.2.4",
-    "autoprefixer": "10.4.14",
-    "eslint": "8.42.0",
-    "eslint-config-next": "13.4.4",
-    "next": "13.4.4",
-    "postcss": "8.4.24",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "tailwindcss": "3.3.2",
-    "typescript": "5.1.3"
+    "axios": "^1.3.4",
+    "env-cmd": "^10.1.0",
+    "i18next": "^22.4.11",
+    "javascript-obfuscator": "^4.0.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-i18next": "^12.2.0",
+    "react-redux": "^8.0.5",
+    "react-router-dom": "^6.9.0",
+    "react-scripts": "5.0.1",
+    "sass": "^1.59.2",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "javascript-obfuscator-build": "javascript-obfuscator build/static/js --output build/static/js --unicode-escape-sequence true",
+    "start": "env-cmd -f envs/development.env react-app-rewired start",
+    "build:staging": "env-cmd -f envs/staging.env react-app-rewired build && npm run javascript-obfuscator-build",
+    "build:preprod": "env-cmd -f envs/preprod.env react-app-rewired build && npm run javascript-obfuscator-build",
+    "build:production": "env-cmd -f envs/production.env react-app-rewired build && npm run javascript-obfuscator-build",
+    "start:build:staging": "env-cmd -f envs/staging.env serve -s build",
+    "start:build:preprod": "env-cmd -f envs/preprod.env serve -s build",
+    "start:build:production": "env-cmd -f envs/production.env serve -s build",
+    "start:staging": "npm run build:staging && npm run start:build:staging",
+    "start:preprod": "npm run build:preprod && npm run start:build:preprod",
+    "start:production": "npm run build:production && npm run start:build:production",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "lint": "eslint src --max-warnings=0",
+    "lint:staged": "lint-staged",
+    "lint:fix": "npm run lint -- --fix",
+    "prepare": "husky install"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "assert": "^2.0.0",
+    "buffer": "^6.0.3",
+    "crypto-browserify": "^3.12.0",
+    "eslint": "^8.36.0",
+    "eslint-plugin-react": "^7.32.2",
+    "https-browserify": "^1.0.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.0",
+    "os-browserify": "^0.3.0",
+    "postcss": "^8.4.24",
+    "process": "^0.11.10",
+    "react-app-rewired": "^2.2.1",
+    "stream-browserify": "^3.0.0",
+    "stream-http": "^3.2.0",
+    "tailwindcss": "^3.3.2",
+    "url": "^0.11.0",
+    "webpack": "^5.76.1"
   }
 }

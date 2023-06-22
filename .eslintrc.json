@@ -1,0 +1,47 @@
+{
+    "extends": [
+      "react-app"
+    ],
+    "ignorePatterns": "",
+    "rules": {
+      "semi": [
+        2,
+        "always"
+      ],
+      "max-len": [
+        2,
+        200,
+        2
+      ],
+      "no-console": "warn",
+      "no-alert": "warn",
+      "no-undef": "error",
+      "indent": [
+        "error",
+        2
+      ],
+      "quotes": [
+        2,
+        "single",
+        "avoid-escape"
+      ],
+      "react-hooks/exhaustive-deps": "off",
+      "import/no-unresolved": [
+        2,
+        {
+          "caseSensitive": true
+        }
+      ],
+      "react/jsx-key": ["error", { "checkFragmentShorthand": true, "warnOnDuplicates": false }]
+    },
+    "overrides": [
+      {
+        "files": [
+          ""
+        ],
+        "rules": {
+          "import/no-anonymous-default-export": "off"
+        }
+      }
+    ]
+}
