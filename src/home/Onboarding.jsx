@@ -42,14 +42,14 @@ export const Onboarding = () => {
 
     const ornamentBackground = () => {
         return (
-            <div className="relative w-full h-max flex justify-center bottom-0 left-0 px-2">
+            <div className="absolute w-full h-max flex justify-center bottom-0 left-0 px-2">
                 <div className="absolute w-full flex justify-center bottom-16 left-0 z-10">
                     <img src={union}></img>
                 </div>
                 <div className="absolute w-full flex justify-center bottom-0 left-0 z-30">
                     <img src={andvelop}></img>
                 </div>
-                <div className="relative w-full flex justify-center h-80 top-0 left-0 z-30">
+                <div className="relative w-full flex justify-center h-80 top-0 left-0 z-10">
                     <div className="relative h-32 w-32 bg-coklat400 rounded-full flex justify-center text-center items-center">
                         <p className="absolute font-[alice] font-medium text-body4">Ketuk untuk melanjutkan</p>
                         <div className="absolute w-full flex justify-center">
