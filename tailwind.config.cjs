@@ -11,6 +11,17 @@ module.exports = {
         alice: ['Alice'],
         'tanPearl': ['TanPearl'],
       },
+      fontSize: {
+        body1: '20px',
+        body2: '16px',
+        body3: '14px',
+        body4: '12px',
+        body5: '10px',
+        header1: '36px',
+        header2: '32px',
+        header3: '20px',
+        header4: '16px',
+      },
       colors: {
         DEFAULT: '#ECECEC',
 
