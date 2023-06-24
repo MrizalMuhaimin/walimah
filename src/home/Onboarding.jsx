@@ -42,7 +42,7 @@ export const Onboarding = () => {
 
     const ornamentBackground = () => {
         return (
-            <div className="absolute w-full h-max flex justify-center bottom-0 left-0 px-2">
+            <div className="relative w-full h-max flex justify-center bottom-0 left-0 px-2">
                 <div className="absolute w-full flex justify-center bottom-16 left-0 z-10">
                     <img src={union}></img>
                 </div>
@@ -62,9 +62,12 @@ export const Onboarding = () => {
     }
   
     return (
-      <div className="w-full h-full relative">
+      <div className="w-full h-full flex flex-col justify-between relative">
+        <div className="w-full py-3">
         {header()}
         {inputForm()}
+        </div>
+        
         {ornamentBackground()}
       </div>
     );
