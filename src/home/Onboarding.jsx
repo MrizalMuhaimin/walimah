@@ -1,6 +1,8 @@
-import andvelop from './../assets/img/andvelop.svg'
+import imgEnvelope from './../assets/img/imgEnvelope.svg'
 import union from './../assets/img/union.svg'
 import logoAA from './../assets/img/logoAA.svg'
+import lampLeft from './../assets/img/lampLeft.svg'
+import lampRight from './../assets/img/lampRight.svg'
 
 
 export const Onboarding = () => {
@@ -40,14 +42,28 @@ export const Onboarding = () => {
         )
     }
 
-    const ornamentBackground = () => {
+    const background = () => {
+        return (
+            <div className="w-full flex absolute bottom-40">
+                <div className="relative w-full flex justify-center bottom-0 left-0">
+                    <img src={lampLeft}></img>
+                </div>
+                <div className="relative w-full flex justify-center bottom-0 left-0">
+                    <img src={lampRight}></img>
+                </div>
+            </div>
+
+        )
+    }
+
+    const envelope = () => {
         return (
             <div className="absolute w-full h-max flex justify-center bottom-0 left-0 px-2">
                 <div className="absolute w-full flex justify-center bottom-16 left-0 z-10">
                     <img src={union}></img>
                 </div>
                 <div className="absolute w-full flex justify-center bottom-0 left-0 z-30">
-                    <img src={andvelop}></img>
+                    <img src={imgEnvelope}></img>
                 </div>
                 <div className="relative w-full flex justify-center h-80 top-0 left-0 z-10">
                     <div className="relative h-32 w-32 bg-coklat400 rounded-full flex justify-center text-center items-center">
@@ -63,12 +79,16 @@ export const Onboarding = () => {
   
     return (
       <div className="w-full h-full flex flex-col justify-between relative">
-        <div className="w-full py-3">
-        {header()}
-        {inputForm()}
+        <div className="w-full h-full">
+            {header()}
+            {inputForm()}
+        </div>
+        <div className="w-full h-80 relative">
+            {background()}
+            {envelope()}
         </div>
         
-        {ornamentBackground()}
+        
       </div>
     );
   };
