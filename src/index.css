@@ -21,3 +21,9 @@ body {
     font-family: 'TanPearl';
     src: url('./assets/fonts/TAN-PEARL.ttf');
 }
+
+.trans {
+    transition: all;
+    transition-duration: 500ms;
+    transition-timing-function: ease;
+}
