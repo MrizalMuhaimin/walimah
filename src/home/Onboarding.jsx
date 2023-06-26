@@ -8,7 +8,7 @@ import card from './../assets/img/card.svg'
 import done_ring_round from './../assets/img/done_ring_round.svg'
 
 
-export const Onboarding = () => {
+export const Onboarding = ({setStatePage = ()=>{},}) => {
 
     const [isCard, setIsCard] = useState(false)
 
@@ -87,7 +87,7 @@ export const Onboarding = () => {
                     { isCard && 
                         <div 
                             className="cursor-pointer relative h-9 w-10/12 -bottom-5 bg-coklat400 rounded-sm flex justify-center text-center items-center drop-shadow-md"
-                            onClick={() => {setIsCard(true)}}
+                            onClick={setStatePage}
                         >
                             <img src={done_ring_round}></img>
                             <p className="px-1 font-[alice] font-medium text-body4 text-white">Terima Tantangan</p>
@@ -111,7 +111,7 @@ export const Onboarding = () => {
     }
   
     return (
-      <div className="w-full h-full flex flex-col justify-between relative overflow-hidden">
+      <div className="w-full h-full flex flex-col justify-between relative">
         <div className="w-full h-full">
             {header()}
             {inputForm()}

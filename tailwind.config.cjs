@@ -54,6 +54,7 @@ module.exports = {
         // netral
         white: '#FFFFFF',
         blackNeutral: '#2F2F2F' , 
+        grey: '#EEEEE',
 
         //Accent
         danger600: '#5B0707',
