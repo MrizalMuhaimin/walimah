@@ -1,6 +1,26 @@
+import { useState } from 'react';
 import tent1 from './../assets/img/tent1.svg'
 
 export const Quiz = () => {
+    const [indexSelected, setIndexSelected] = useState(-1);
+
+    
+    const listAnswer = [
+        {
+            q: "A",
+            status: true,
+        },
+        {
+            q: "B",
+            status: false,
+        },
+        {
+            q: "C",
+            status: false,
+        }
+    ]
+
+
     const header = () => {
         return (
             <div className="px-6 pt-6">
@@ -13,11 +33,13 @@ export const Quiz = () => {
         )
     }
 
-    const questionItem = () => {
+    const questionItem = (text="", isSelected=false, index=0) => {
         return (
-            <div className="flex items-center bg-white px-2 py-1 border border-grey rounded-md">
-                <input type="radio" className="w-6 h-6 rounded-full accent-coklat500" />
-                <span className="ml-2 font-[alice] font-medium text-body5 ">Teks jawaban disini </span>
+            <div 
+                onClick={() => setIndexSelected(index)}
+                className="flex items-center bg-white px-2 py-1 border border-grey rounded-md cursor-pointer">
+                <input type="radio" checked={isSelected} className="w-6 h-6 rounded-full accent-coklat500" />
+                <span className="ml-2 font-[alice] font-medium text-body5 ">{text}</span>
             </div>
         )
     }
@@ -31,9 +53,9 @@ export const Quiz = () => {
                         <p className="font-[alice] font-medium text-body3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In orci est, ultrices sed tempor eu, sagittis id erat</p>
                     </div>
                     <div className="flex flex-col space-y-2">
-                      {questionItem()}
-                      {questionItem()}
-                      {questionItem()}
+                      {listAnswer.map((val, index) => (
+                        questionItem(val.q, index === indexSelected, index)
+                      ))}
                     </div>
                 </div>
             </div>
