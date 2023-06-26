@@ -36,8 +36,9 @@ export const Quiz = () => {
     const questionItem = (text="", isSelected=false, index=0) => {
         return (
             <div 
+                className="flex items-center bg-white px-2 py-1 border border-grey rounded-md cursor-pointer focus:bg-coklat300"
                 onClick={() => setIndexSelected(index)}
-                className="flex items-center bg-white px-2 py-1 border border-grey rounded-md cursor-pointer">
+                >
                 <input type="radio" checked={isSelected} className="w-6 h-6 rounded-full accent-coklat500" />
                 <span className="ml-2 font-[alice] font-medium text-body5 ">{text}</span>
             </div>
