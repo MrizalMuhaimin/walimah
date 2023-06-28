@@ -6,13 +6,9 @@ import { Main } from './Main.jsx';
 export const Home = () => {
   const [page, setPage] = useState('onbaordingPage');
 
-  const setQuiz = () => {
-    setPage('quizPage');
-  }
-
   function renderContent (){
     switch (page) {
-      case 'onbaordingPage': return <Onboarding setStatePage={setQuiz} />
+      case 'onbaordingPage': return <Onboarding setStatePage={setPage} />
       case 'quizPage': return <Quiz/>
       case 'mainPage': return <Main/>
       default: return <Onboarding/>

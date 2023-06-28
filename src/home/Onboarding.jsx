@@ -87,7 +87,7 @@ export const Onboarding = ({setStatePage = ()=>{},}) => {
                     { isCard && 
                         <div 
                             className="cursor-pointer relative h-9 w-10/12 -bottom-5 bg-coklat400 rounded-sm flex justify-center text-center items-center drop-shadow-md"
-                            onClick={setStatePage}
+                            onClick={()=>setStatePage('quizPage')}
                         >
                             <img src={done_ring_round}></img>
                             <p className="px-1 font-[alice] font-medium text-body4 text-white">Terima Tantangan</p>
