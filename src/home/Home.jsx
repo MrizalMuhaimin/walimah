@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Onboarding } from "../home/Onboarding.jsx";
 import { Quiz } from "../home/Quiz.jsx";
-import { Main } from './main.jsx';
+import { Main } from './Main.jsx';
 
 export const Home = () => {
   const [page, setPage] = useState('onbaordingPage');
