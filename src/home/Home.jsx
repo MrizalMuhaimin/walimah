@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Onboarding } from "../home/Onboarding.jsx";
 import { Quiz } from "../home/Quiz.jsx";
+import { Main } from './main.jsx';
 
 export const Home = () => {
   const [page, setPage] = useState('onbaordingPage');
@@ -13,6 +14,7 @@ export const Home = () => {
     switch (page) {
       case 'onbaordingPage': return <Onboarding setStatePage={setQuiz} />
       case 'quizPage': return <Quiz/>
+      case 'mainPage': return <Main/>
       default: return <Onboarding/>
     }
   }
