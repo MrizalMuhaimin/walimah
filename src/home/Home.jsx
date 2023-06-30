@@ -28,7 +28,7 @@ export const Home = () => {
   useEffect(() => {
     getDataInvitation()
     
-  }, []);
+  },);
 
   function renderContent (){
     switch (page) {
