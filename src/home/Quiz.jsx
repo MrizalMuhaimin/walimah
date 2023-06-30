@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import tent1 from './../assets/img/tent1.svg'
 
-export const Quiz = () => {
+export const Quiz = ({setStatePage = ()=>{},}) => {
     const [indexSelected, setIndexSelected] = useState(-1);
 
     
     const listAnswer = [
         {
             q: "A",
-            status: true,
+            status: false,
         },
         {
             q: "B",
@@ -16,9 +16,17 @@ export const Quiz = () => {
         },
         {
             q: "C",
-            status: false,
+            status: true,
         }
     ]
+
+    const onClickItem = (index) => {
+        setIndexSelected(index)
+        if(listAnswer[index].status){
+            setStatePage('mainPage')
+        }
+       
+    }
 
 
     const header = () => {
@@ -35,11 +43,11 @@ export const Quiz = () => {
 
     const questionItem = (text="", isSelected=false, index=0) => {
         return (
-            <div 
+            <div key={index}
                 className="flex items-center bg-white px-2 py-1 border border-grey rounded-md cursor-pointer active:bg-coklat300"
-                onClick={() => setIndexSelected(index)}
+                onClick={() => onClickItem(index) }
                 >
-                <input type="radio" checked={isSelected} className="w-6 h-6 rounded-full accent-coklat500" />
+                <input type="radio" checked={isSelected} readOnly className="w-6 h-6 rounded-full accent-coklat500" />
                 <span className="ml-2 font-[alice] font-medium text-body5 ">{text}</span>
             </div>
         )

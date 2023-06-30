@@ -1,3 +1,4 @@
+/* eslint-disable no-irregular-whitespace */
 import  decoration3 from './../assets/img/decoration3.svg'
 import  leaf2 from './../assets/img/leaf2.svg'
 import  Download from './../assets/img/Download.svg'
@@ -10,7 +11,7 @@ import cloud3 from './../assets/img/cloud3.svg'
 import QRCode from "react-qr-code"
 
 
-export const MainBottomSection = () => {
+export const MainBottomSection = ({dataInvitation={}}) => {
     const header = () => {
         return (
             <div className="px-6 pt-6 text-center h-48 relative">
@@ -40,9 +41,11 @@ export const MainBottomSection = () => {
                 <div className="bg-coklat800 px-6 py-6 font-[alice] font-medium text-body4 text-white">
                     <p>Ketentuan Vidio:</p>
                     <ul className="list-disc px-3 pb-4" style={{width:'311px'}}>
-                        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur</li>
-                        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur</li>
-                        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur</li>
+                        <li>Video dapat berupa film pendek, vlog, video musik, parodi, ataupun jenis video yang lain</li>
+                        <li>Format .mp4, .mkv atau .mov</li>
+                        <li>Video dibuat dalam layout landscape</li>
+                        <li>Durasi maksimal 1 menit</li>
+                        njs
                     </ul>
                     <div 
                         style={{ height:'32px', width:'311px'}} 
@@ -88,7 +91,7 @@ export const MainBottomSection = () => {
     const cardItem = () => {
         return (
             <div style={{ height: 142, width: 311}} className='border  border-coklat400 rounded p-2 '>
-                <p style={{lineHeight:'12px'}} className='text-body2 text-coklat700'>Dari Nama Penerima,</p>
+                <p style={{lineHeight:'12px'}} className='text-body2 text-coklat700'>Dari ....</p>
                 <p className='text-body4 text-coklat500'>6 Juli 2023</p>
                 <p className='text-body4 py-2'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In orci est, ultrices sed tempor eu, sagittis id erat. In pretium accumsan vehicula. Integer ac libero leo.</p>
             </div>
@@ -103,7 +106,7 @@ export const MainBottomSection = () => {
                     <p className="font-[tanPearl] font-medium text-header1  text-steel700 pt-9 ">Ucapan</p>
                 </div>
                 <div className="bg-coklat800 px-6 py-6 font-[alice] font-medium text-body4 text-white">
-                    <p>Dari Nama Penerima :</p>
+                    <p>Dari {dataInvitation?.user?.name} :</p>
                     <textarea style={{ height:'100px', width:'311px'}} placeholder='Isi Ucapan' className="my-3 rounded text-blackNeutral p-2 placeholder:text-coklat400"></textarea>
 
                     
@@ -133,7 +136,7 @@ export const MainBottomSection = () => {
                         fgColor ='#6E513B'
                         size={256}
                         style={{ height: "auto", maxWidth: "100%", width: "100%" }}
-                        value={'Akram'}
+                        value={dataInvitation?.user?.id}
                         viewBox={`0 0 256 256`}
                     />
                     </div>
