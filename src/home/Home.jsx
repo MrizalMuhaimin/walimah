@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Onboarding } from "../home/Onboarding.jsx";
+import { OnBoarding } from "./OnBoarding.jsx";
 import { Quiz } from "../home/Quiz.jsx";
 import { Main } from './Main.jsx';
 
@@ -10,7 +10,7 @@ import { getInvitation } from "./../services/invitations"
 export const Home = () => {
   const { id: idInvitation } = useParams();
   const navigate = useNavigate();
-  const [page, setPage] = useState('onbaordingPage');
+  const [page, setPage] = useState('onBoardingPage');
   const [dataInvitation, setDataInvitation] = useState({});
 
   const getDataInvitation = async (invitationId) => {
@@ -21,14 +21,14 @@ export const Home = () => {
       );
       const data = response?.data || {};
       if(data.invitation.status === 'AVAILABLE' ){
-        setPage('onbaordingPage')
+        setPage('onBoardingPage')
   
       } else if(data.user.status === 'RSVP_PROVIDED') {
         setPage('mainPage')
       } else if(data.user.status === 'INFO_COMPLETED') {
-        setPage('onbaordingPage')
+        setPage('onBoardingPage')
       } else if(data.user.status === 'NEWLY_CREATED') {
-        setPage('onbaordingPage')
+        setPage('onBoardingPage')
       } else {
         navigate('/');
   
@@ -48,10 +48,10 @@ export const Home = () => {
 
   function renderContent (){
     switch (page) {
-      case 'onbaordingPage': return <Onboarding setStatePage={setPage} dataInvitation={dataInvitation} getDataInvitation = {() => {getDataInvitation(idInvitation)}} />
+      case 'onBoardingPage': return <OnBoarding setStatePage={setPage} dataInvitation={dataInvitation} getDataInvitation = {() => {getDataInvitation(idInvitation)}} />
       case 'quizPage': return <Quiz setStatePage={setPage}/>
       case 'mainPage': return <Main dataInvitation={dataInvitation}/>
-      default: return <Onboarding/>
+      default: return <OnBoarding/>
     }
   }
 
