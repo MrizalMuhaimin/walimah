@@ -9,7 +9,7 @@ import done_ring_round from "./../assets/img/done_ring_round.svg";
 
 import { createUser, updateUser } from "./../services/user";
 
-export const Onboarding = ({
+export const OnBoarding = ({
   setStatePage = () => {},
   dataInvitation = {},
   getDataInvitation = () => {},
