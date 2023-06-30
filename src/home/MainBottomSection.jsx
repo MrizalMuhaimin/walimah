@@ -11,10 +11,10 @@ import cloud3 from './../assets/img/cloud3.svg'
 import QRCode from "react-qr-code"
 
 
-export const MainBottomSection = ({dataInvitation={}}) => {
+export const MainBottomSection = ({dataInvitation={}, refQR, refGift}) => {
     const header = () => {
         return (
-            <div className="px-6 pt-6 text-center h-48 relative">
+            <div className="px-6 pt-6 text-center h-48 relative" ref={refQR}>
                 <img src={decoration3} className='mr-auto ml-auto'></img>
                 <p className="font-[tanPearl] font-medium text-header1 text-steel700 pt-9 ">Kehadiran</p>
                 <div className="w-60 text-center ml-auto mr-auto pt-6">
@@ -62,7 +62,7 @@ export const MainBottomSection = ({dataInvitation={}}) => {
 
     const gift = () => {
         return (
-            <div className="w-full pb-6">
+            <div className="w-full pb-6" ref={refGift}>
                 <div className="px-6 pt-6 pb-3 text-center relative">
                     <img src={decoration3} className='mr-auto ml-auto'></img>
                     <p className="font-[tanPearl] font-medium text-header1  text-steel700 pt-9 ">Hadiah</p>
@@ -200,9 +200,6 @@ export const MainBottomSection = ({dataInvitation={}}) => {
         {gift()}
         {greetingCard()}
         {footer()}
-        
-        
-
       </div>
     );
   };
