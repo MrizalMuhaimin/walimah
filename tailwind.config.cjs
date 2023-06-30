@@ -26,6 +26,7 @@ module.exports = {
         DEFAULT: '#ECECEC',
 
         //  Steel Blue:
+        steel100: '#EDF3F8',
         steel700: '#2B506E',
         steel500: '#4682B4',
         steel400: '#7EAACD',
@@ -78,6 +79,9 @@ module.exports = {
         success200: '#E7F4D5',
         success100: '#FCFFF8',
       },
+      scale: {
+        '119' : '1.19'
+      }
     },
   },
   plugins: [],
