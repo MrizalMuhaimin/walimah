@@ -79,6 +79,10 @@ module.exports = {
       scale: {
         119: "1.19",
       },
+      backgroundImage: {
+        blueGradient:
+          "linear-gradient(180deg, #1D3549 28.57%, #396A93 64.63%, #4682B4 100%)",
+      },
     },
   },
   plugins: [],
