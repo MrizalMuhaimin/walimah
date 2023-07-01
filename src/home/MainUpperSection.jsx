@@ -129,7 +129,7 @@ export const MainUpperSection = ({
           <img src={escalator} className="object-fill" />
         </div>
         <div className="flex items-center justify-center pt-[50px] text-white">
-          <div className="z-40 flex flex w-10/12 flex-col items-center justify-center rounded-[24px] bg-[#396A93]/[.75] py-[16px] text-center">
+          <div className="z-40 flex w-10/12 flex-col items-center justify-center rounded-[24px] bg-[#396A93]/[.75] py-[16px] text-center">
             <div>
               <p className="font-[alice] text-body2 uppercase">Minggu</p>
               <p className="font-[tanPearl] text-header1">23 Juli 2023</p>
