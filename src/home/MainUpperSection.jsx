@@ -6,6 +6,9 @@ import decoration2Half from "./../assets/img/decoration2Half.svg";
 import streetMrt from "./../assets/img/streetMrt.svg";
 import bismillah from "./../assets/img/bismillah.svg";
 import terminalBus from "./../assets/img/terminalBus.svg";
+import escalator from "./../assets/img/escalator.svg";
+import building from "./../assets/img/building.svg";
+import { ReactComponent as CompassLogo } from "../assets/img/compass.svg";
 import { useCallback } from "react";
 
 export const MainUpperSection = ({ dataInvitation = {}, width }) => {
@@ -94,7 +97,50 @@ export const MainUpperSection = ({ dataInvitation = {}, width }) => {
     );
   };
   const invitation = () => {
-    return <div>invitation</div>;
+    return (
+      <div>
+        <div className="w-full">
+          <img src={escalator} className="object-fill" />
+        </div>
+        <div className="flex items-center justify-center pt-[50px] text-white">
+          <div className="z-40 flex flex w-10/12 flex-col items-center justify-center rounded-[24px] bg-[#396A93]/[.75] py-[16px] text-center">
+            <div>
+              <p className="font-[alice] text-body2 uppercase">Minggu</p>
+              <p className="font-[tanPearl] text-header1">23 Juli 2023</p>
+            </div>
+            <div className="py-[8px]">
+              <p className="font-[alice] text-body2">
+                Bale Dayang Sumbi Itenas
+              </p>
+              <p className="font-[alice] text-body2">
+                Jl. PP.H. Mustofa No.23, Neglasari, Cibeunying Kaler, Bandung
+                City, West Java 40124, Indonesia
+              </p>
+            </div>
+            <div className="flex justify-between pb-[8px]">
+              <div>
+                <p className="font-[tanPearl] text-header2">Akad</p>
+                <p className="font-[alice] text-body2">08.00 - 09.30</p>
+              </div>
+              <div className="mx-[32px] border border-white" />
+              <div>
+                <p className="font-[tanPearl] text-header2">Resepsi</p>
+                <p className="font-[alice] text-body2">10.00 - 11.30 </p>
+              </div>
+            </div>
+            <button className="rounded-[4px] border border-[#EEEEEE] bg-white px-[12px] py-[4px] text-black">
+              <div className="flex items-center justify-center gap-[4px]">
+                <CompassLogo className="text-steel500" />
+                <p className="font-[alice] text-body4">Buka di Google Maps</p>
+              </div>
+            </button>
+          </div>
+        </div>
+        <div className="-mt-20 w-full">
+          <img src={building} className="object-fill" />
+        </div>
+      </div>
+    );
   };
   const countdown = () => {
     return <div className="bg-white">countdown</div>;
