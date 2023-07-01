@@ -41,10 +41,6 @@ export const Main = ({ dataInvitation = {}, width }) => {
     setIsMute(!isMute);
   };
 
-  useEffect(() => {
-    console.log(width);
-  }, [width]);
-
   return (
     <div
       className="h-full w-full overflow-auto bg-white"

@@ -38,11 +38,11 @@ export const MainUpperSection = ({ dataInvitation = {}, width }) => {
   const greeting = () => {
     return (
       <div className="flex w-full flex-col items-center justify-center">
-        <img src={decoration2} />
-        <p className="font-[alice]">23 Juli 2023</p>
-        <p className="font-[tanPearl]">Akram & Afra</p>
-        <img src={decoration1} />
-        <div className="w-full">
+        <img src={decoration2} className="-mt-9 w-[130px]" />
+        <p className="font-[alice] text-body2 text-white">23 Juli 2023</p>
+        <p className="font-[tanPearl] text-header1 text-white">Akram & Afra</p>
+        <img src={decoration1} className="w-[305px]" />
+        <div className="w-full pt-[32px]">
           <img src={streetMrt} className="object-fill" />
         </div>
       </div>
