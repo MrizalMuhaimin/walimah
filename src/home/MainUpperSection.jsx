@@ -3,6 +3,8 @@ import rightLeaf from "./../assets/img/rightLeaf.svg";
 import decoration1 from "./../assets/img/decoration1.svg";
 import decoration2 from "./../assets/img/decoration2.svg";
 import streetMrt from "./../assets/img/streetMrt.svg";
+import bismillah from "./../assets/img/bismillah.svg";
+import terminalBus from "./../assets/img/terminalBus.svg";
 import { useCallback } from "react";
 
 export const MainUpperSection = ({ dataInvitation = {}, width }) => {
@@ -42,20 +44,31 @@ export const MainUpperSection = ({ dataInvitation = {}, width }) => {
         <p className="font-[alice] text-body2 text-white">23 Juli 2023</p>
         <p className="font-[tanPearl] text-header1 text-white">Akram & Afra</p>
         <img src={decoration1} className="w-[305px]" />
-        <div className="w-full pt-[32px]">
+        <div className="w-full py-[32px]">
           <img src={streetMrt} className="object-fill" />
+        </div>
+        <img src={decoration1} className="w-[305px] rotate-180" />
+        <img src={bismillah} className="" />
+        <div className="w-[280px]">
+          <p className="text-center text-body4 text-white">
+            Dengan memohon rahmat dan ridho Allah SWT, kami bermaksud
+            menyelenggarakan pernikahan
+          </p>
+        </div>
+        <div className="w-full pt-[30px]">
+          <img src={terminalBus} className="object-fill" />
         </div>
       </div>
     );
   };
   const content = () => {
-    return <div>content</div>;
+    return <div className="bg-white">content</div>;
   };
   const invitation = () => {
     return <div>invitation</div>;
   };
   const countdown = () => {
-    return <div>countdown</div>;
+    return <div className="bg-white">countdown</div>;
   };
   return (
     <div className="w-full bg-blueGradient">
