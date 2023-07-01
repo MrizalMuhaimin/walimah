@@ -5,9 +5,11 @@ import { BottomBar } from "../components/BottomBar";
 import { MusicSideBar } from "../components/MusicSideBar";
 
 export const Main = ({ dataInvitation = {}, width }) => {
+  const refCalendarSection = useRef(null);
   const refQRSection = useRef(null);
   const refGiftSection = useRef(null);
 
+  const [heightCalendarSection, setHeightCalendarSection] = useState(0);
   const [heightQRSection, setHeightQRSection] = useState(0);
   const [heightGiftSection, setHeightGiftSection] = useState(0);
 
@@ -16,11 +18,24 @@ export const Main = ({ dataInvitation = {}, width }) => {
   const [isMute, setIsMute] = useState(false);
 
   useEffect(() => {
-    setHeightQRSection(refQRSection.current.getBoundingClientRect().top + 55);
-    setHeightGiftSection(
-      refGiftSection.current.getBoundingClientRect().top + 55
+    setHeightCalendarSection(
+      refCalendarSection.current.getBoundingClientRect().top
     );
-  }, [refQRSection.current, refGiftSection.current]);
+    setHeightQRSection(
+      refQRSection.current.getBoundingClientRect().top +
+        refQRSection.current.offsetTop
+    );
+    setHeightGiftSection(
+      refGiftSection.current.getBoundingClientRect().top +
+        55 +
+        refQRSection.current.offsetTop
+    );
+    console.log(heightCalendarSection, heightQRSection, heightGiftSection);
+  }, [
+    refCalendarSection.current,
+    refQRSection.current,
+    refGiftSection.current,
+  ]);
 
   const scrollEvent = (e) => {
     const currentHeight = e.target.scrollTop + e.target.offsetHeight;
@@ -31,6 +46,7 @@ export const Main = ({ dataInvitation = {}, width }) => {
       case currentHeight > heightQRSection:
         setActiveSection("QR");
         break;
+      case currentHeight > heightCalendarSection:
       default:
         setActiveSection("CALENDAR");
         break;
@@ -41,19 +57,42 @@ export const Main = ({ dataInvitation = {}, width }) => {
     setIsMute(!isMute);
   };
 
+  const goToPosition = (to) => {
+    switch (to) {
+      case "GIFT":
+        refGiftSection.current.scrollIntoView({ behavior: "smooth" });
+        break;
+      case "QR":
+        refQRSection.current.scrollIntoView({ behavior: "smooth" });
+        break;
+      case "CALENDAR":
+      default:
+        refCalendarSection.current.scrollIntoView({ behavior: "smooth" });
+        break;
+    }
+  };
+
   return (
     <div
       className="h-full w-full overflow-auto bg-white"
       onScroll={scrollEvent}
     >
       <MusicSideBar isMute={isMute} onClick={handleMusic} />
-      <MainUpperSection dataInvitation={dataInvitation} width={width} />
+      <MainUpperSection
+        dataInvitation={dataInvitation}
+        width={width}
+        refCalendar={refCalendarSection}
+      />
       <MainBottomSection
         dataInvitation={dataInvitation}
         refQR={refQRSection}
         refGift={refGiftSection}
       />
-      <BottomBar section={activeSection} width={width} />
+      <BottomBar
+        section={activeSection}
+        width={width}
+        onClickTab={goToPosition}
+      />
     </div>
   );
 };

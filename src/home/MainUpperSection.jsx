@@ -18,7 +18,11 @@ import { useCountdown } from "../helpers/hooks/useCountdown";
 import { TimeCard } from "../components/TimeCard";
 import { dateReminder } from "../services/reminders";
 
-export const MainUpperSection = ({ dataInvitation = {}, width }) => {
+export const MainUpperSection = ({
+  dataInvitation = {},
+  width,
+  refCalendar,
+}) => {
   const [days, hours, minutes, seconds] = useCountdown("2023-07-23T01:00:00Z");
 
   const getDateReminder = async () => {
@@ -43,6 +47,7 @@ export const MainUpperSection = ({ dataInvitation = {}, width }) => {
             width * 0.73
           } 190 ${width * 0.27} 190 ${width * 0.1} 300 H 0 Z')`,
         }}
+        ref={refCalendar}
       >
         <img src={leftLeaf} className="absolute left-0 top-0" />
         <img src={rightLeaf} className="absolute right-0 top-[150px]" />
