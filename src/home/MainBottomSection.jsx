@@ -1,9 +1,9 @@
 import decoration3 from "./../assets/img/decoration3.svg";
 import leaf2 from "./../assets/img/leaf2.svg";
-import Download from "./../assets/img/download.svg";
-import done_ring_round from "./../assets/img/doneRingRound.svg";
-import Gift from "./../assets/img/gift.svg";
-import Send from "./../assets/img/send.svg";
+import { ReactComponent as Download } from "./../assets/img/download.svg";
+import { ReactComponent as CheckCircle } from "./../assets/img/checkCircle.svg";
+import { ReactComponent as Gift } from "./../assets/img/gift.svg";
+import { ReactComponent as Send } from "./../assets/img/send.svg";
 import streetMrt2 from "./../assets/img/streetMrt2.svg";
 import cloud3 from "./../assets/img/cloud3.svg";
 
@@ -65,7 +65,7 @@ export const MainBottomSection = ({ dataInvitation = {}, refQR, refGift }) => {
             style={{ height: "32px", width: "311px" }}
             className="ml-auto mr-auto flex  w-full items-center justify-center rounded-sm bg-coklat600"
           >
-            <img src={done_ring_round}></img>
+            <CheckCircle />
             <p className="px-2 font-[alice] text-body3 font-medium text-white drop-shadow ">
               {" "}
               Ingatkan saya untuk kirim video
@@ -188,7 +188,7 @@ export const MainBottomSection = ({ dataInvitation = {}, refQR, refGift }) => {
             style={{ height: "32px", width: "311px" }}
             className="ml-auto mr-auto flex  w-full items-center justify-center rounded-sm bg-coklat600  "
           >
-            <img src={Download}></img>
+            <Download />
             <p className="px-2 font-[alice] text-body3 font-medium text-white">
               {" "}
               Unduh QR Code
@@ -224,7 +224,7 @@ export const MainBottomSection = ({ dataInvitation = {}, refQR, refGift }) => {
             style={{ height: "32px", width: "311px" }}
             className="ml-auto mr-auto flex  w-full items-center justify-center rounded-sm bg-coklat600 "
           >
-            <img src={done_ring_round}></img>
+            <CheckCircle />
             <p className="px-2 font-[alice] text-body3 font-medium text-white">
               {" "}
               Konfirmasi

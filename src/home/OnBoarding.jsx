@@ -5,7 +5,7 @@ import logoAA from "./../assets/img/logoAA.svg";
 import lampLeft from "./../assets/img/lampLeft.svg";
 import lampRight from "./../assets/img/lampRight.svg";
 import card from "./../assets/img/card.svg";
-import CheckCircle from "./../assets/img/checkCircle.svg";
+import { ReactComponent as CheckCircle } from "./../assets/img/checkCircle.svg";
 
 import { createUser, updateUser } from "./../services/user";
 
