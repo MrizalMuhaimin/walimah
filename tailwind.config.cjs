@@ -78,6 +78,7 @@ module.exports = {
       },
       scale: {
         119: "1.19",
+        "-100": "-1",
       },
       backgroundImage: {
         blueGradient:

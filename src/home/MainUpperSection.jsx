@@ -2,6 +2,7 @@ import leftLeaf from "./../assets/img/leftLeaf.svg";
 import rightLeaf from "./../assets/img/rightLeaf.svg";
 import decoration1 from "./../assets/img/decoration1.svg";
 import decoration2 from "./../assets/img/decoration2.svg";
+import decoration2Half from "./../assets/img/decoration2Half.svg";
 import streetMrt from "./../assets/img/streetMrt.svg";
 import bismillah from "./../assets/img/bismillah.svg";
 import terminalBus from "./../assets/img/terminalBus.svg";
@@ -62,7 +63,35 @@ export const MainUpperSection = ({ dataInvitation = {}, width }) => {
     );
   };
   const content = () => {
-    return <div className="bg-white">content</div>;
+    return (
+      <div className="shadow-[0px_0px_16px_0px_rgba(0,0,0,0.5) flex h-[254px] flex-col justify-evenly bg-white py-[10px]">
+        <div className="text-center">
+          <p className="font-[tanPearl] text-header2 text-warning400">
+            Afra Izzati Kamili
+          </p>
+          <div className="flex  flex-col justify-center font-[alice] text-body4 text-steel700">
+            <p>Putri ke-2 keluarga</p>
+            <p>Bapak Ismir Kamili & Ibu Yuria Pratiwhi Cleopatra</p>
+            <p>(Antapani, Bandung)</p>
+          </div>
+        </div>
+        <div className="flex items-center justify-center">
+          <img src={decoration2Half} alt="" />
+          <p className="font-[tanPearl] text-header1 text-coklat600">&</p>
+          <img src={decoration2Half} alt="" className="-scale-x-100" />
+        </div>
+        <div className="text-center">
+          <p className="font-[tanPearl] text-header2 text-warning400">
+            Muhammad Akram Al Bari
+          </p>
+          <div className="flex  flex-col justify-center font-[alice] text-body4 text-steel700">
+            <p>Putra ke-3 keluarga</p>
+            <p>Bapak Edy Rianto & Ibu Diana Laelawati</p>
+            <p>(Sewon, Bantul)</p>
+          </div>
+        </div>
+      </div>
+    );
   };
   const invitation = () => {
     return <div>invitation</div>;
