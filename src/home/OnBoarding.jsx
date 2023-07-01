@@ -5,7 +5,7 @@ import logoAA from "./../assets/img/logoAA.svg";
 import lampLeft from "./../assets/img/lampLeft.svg";
 import lampRight from "./../assets/img/lampRight.svg";
 import card from "./../assets/img/card.svg";
-import done_ring_round from "./../assets/img/done_ring_round.svg";
+import CheckCircle from "./../assets/img/checkCircle.svg";
 
 import { createUser, updateUser } from "./../services/user";
 
@@ -197,7 +197,7 @@ export const OnBoarding = ({
               className="relative -bottom-5 flex h-9 w-10/12 cursor-pointer items-center justify-center rounded-sm bg-coklat400 text-center drop-shadow-md"
               onClick={() => setStatePage("quizPage")}
             >
-              <img src={done_ring_round}></img>
+              <CheckCircle />
               <p className="px-1 font-[alice] text-body4 font-medium text-white">
                 Terima Tantangan
               </p>

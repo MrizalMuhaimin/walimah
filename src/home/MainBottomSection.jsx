@@ -1,10 +1,9 @@
-/* eslint-disable no-irregular-whitespace */
 import decoration3 from "./../assets/img/decoration3.svg";
 import leaf2 from "./../assets/img/leaf2.svg";
-import Download from "./../assets/img/Download.svg";
-import done_ring_round from "./../assets/img/done_ring_round.svg";
-import GIftWhite from "./../assets/img/GIftWhite.svg";
-import Send_fill from "./../assets/img/Send_fill.svg";
+import Download from "./../assets/img/download.svg";
+import done_ring_round from "./../assets/img/doneRingRound.svg";
+import Gift from "./../assets/img/gift.svg";
+import Send from "./../assets/img/send.svg";
 import streetMrt2 from "./../assets/img/streetMrt2.svg";
 import cloud3 from "./../assets/img/cloud3.svg";
 
@@ -59,7 +58,7 @@ export const MainBottomSection = ({ dataInvitation = {}, refQR, refGift }) => {
             </li>
             <li>Format .mp4, .mkv atau .mov</li>
             <li>Video dibuat dalam layout landscape</li>
-            <li>Durasi maksimal 1 menit</li>
+            <li>Durasi maksimal 1 menit</li>
             njs
           </ul>
           <div
@@ -90,7 +89,7 @@ export const MainBottomSection = ({ dataInvitation = {}, refQR, refGift }) => {
           style={{ height: "32px", width: "311px" }}
           className="ml-auto mr-auto flex  w-full items-center justify-center rounded-sm bg-coklat500"
         >
-          <img src={GIftWhite} className="fill-white, stroke-white"></img>
+          <Gift />
           <p className="px-2 font-[alice] text-body3 font-medium text-white drop-shadow ">
             {" "}
             Lihat Rekening dan Alamat
@@ -154,7 +153,7 @@ export const MainBottomSection = ({ dataInvitation = {}, refQR, refGift }) => {
             style={{ height: "32px", width: "311px" }}
             className="ml-auto mr-auto flex  w-full items-center justify-center rounded-sm bg-coklat500"
           >
-            <img src={Send_fill}></img>
+            <Send />
             <p className="px-2 font-[alice] text-body3 font-medium text-white drop-shadow ">
               Kirim Ucapan
             </p>
