@@ -82,7 +82,7 @@ module.exports = {
       },
       backgroundImage: {
         blueGradient:
-          "linear-gradient(180deg, #1D3549 28.57%, #396A93 64.63%, #4682B4 100%)",
+          "linear-gradient(180deg, #1D3549 10%, #396A93 15%, #4682B4 100%)",
       },
     },
   },
