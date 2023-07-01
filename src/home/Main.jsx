@@ -4,7 +4,7 @@ import { MainUpperSection } from "./MainUpperSection";
 import { BottomBar } from "../components/BottomBar";
 import { MusicSideBar } from "../components/MusicSideBar";
 
-export const Main = ({ dataInvitation = {} }) => {
+export const Main = ({ dataInvitation = {}, width }) => {
   const refQRSection = useRef(null);
   const refGiftSection = useRef(null);
 
@@ -41,13 +41,17 @@ export const Main = ({ dataInvitation = {} }) => {
     setIsMute(!isMute);
   };
 
+  useEffect(() => {
+    console.log(width);
+  }, [width]);
+
   return (
     <div
       className="h-full w-full overflow-auto bg-white"
       onScroll={scrollEvent}
     >
       <MusicSideBar isMute={isMute} onClick={handleMusic} />
-      <MainUpperSection dataInvitation={dataInvitation} />
+      <MainUpperSection dataInvitation={dataInvitation} width={width} />
       <MainBottomSection
         dataInvitation={dataInvitation}
         refQR={refQRSection}

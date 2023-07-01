@@ -1,15 +1,20 @@
 import leftLeaf from "./../assets/img/leftLeaf.svg";
 import rightLeaf from "./../assets/img/rightLeaf.svg";
+import decoration1 from "./../assets/img/decoration1.svg";
+import decoration2 from "./../assets/img/decoration2.svg";
+import streetMrt from "./../assets/img/streetMrt.svg";
+import { useCallback } from "react";
 
-export const MainUpperSection = ({ dataInvitation = {} }) => {
-  const header = () => {
+export const MainUpperSection = ({ dataInvitation = {}, width }) => {
+  const header = useCallback(() => {
     return (
       <div
         className="relative h-[300px] w-full bg-white pt-6 shadow-[inset_0px_-8px_16px_0px_rgba(70,130,180,0.25)]
           "
         style={{
-          clipPath:
-            "path('M 0 0 L 384 0 V 300 H 356 C 269 189 115 189 28 300 H 0 Z')",
+          clipPath: `path('M 0 0 L ${width} 0 V 300 H ${width * 0.9} C ${
+            width * 0.73
+          } 190 ${width * 0.27} 190 ${width * 0.1} 300 H 0 Z')`,
         }}
       >
         <img src={leftLeaf} className="absolute left-0 top-0" />
@@ -29,9 +34,19 @@ export const MainUpperSection = ({ dataInvitation = {} }) => {
         </div>
       </div>
     );
-  };
+  }, [width]);
   const greeting = () => {
-    return <div className="">greeting</div>;
+    return (
+      <div className="flex w-full flex-col items-center justify-center">
+        <img src={decoration2} />
+        <p className="font-[alice]">23 Juli 2023</p>
+        <p className="font-[tanPearl]">Akram & Afra</p>
+        <img src={decoration1} />
+        <div className="w-full">
+          <img src={streetMrt} className="object-fill" />
+        </div>
+      </div>
+    );
   };
   const content = () => {
     return <div>content</div>;
