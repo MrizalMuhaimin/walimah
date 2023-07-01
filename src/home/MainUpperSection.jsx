@@ -16,9 +16,22 @@ import { ReactComponent as BellLogo } from "../assets/img/bell.svg";
 import { useCallback } from "react";
 import { useCountdown } from "../helpers/hooks/useCountdown";
 import { TimeCard } from "../components/TimeCard";
+import { dateReminder } from "../services/reminders";
 
 export const MainUpperSection = ({ dataInvitation = {}, width }) => {
   const [days, hours, minutes, seconds] = useCountdown("2023-07-23T01:00:00Z");
+
+  const getDateReminder = async () => {
+    try {
+      await dateReminder(dataInvitation.user.id);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getLocation = () => {
+    window.open("https://maps.app.goo.gl/8AyYLyB1kX8BHPmUA", "_blank");
+  };
 
   const header = useCallback(() => {
     return (
@@ -136,7 +149,10 @@ export const MainUpperSection = ({ dataInvitation = {}, width }) => {
                 <p className="font-[alice] text-body2">10.00 - 11.30 </p>
               </div>
             </div>
-            <button className="rounded-[4px] border border-[#EEEEEE] bg-white px-[12px] py-[4px] text-black">
+            <button
+              className="rounded-[4px] border border-[#EEEEEE] bg-white px-[12px] py-[4px] text-black"
+              onClick={getLocation}
+            >
               <div className="flex items-center justify-center gap-[4px]">
                 <CompassLogo className="text-steel500" />
                 <p className="font-[alice] text-body4">Buka di Google Maps</p>
@@ -163,7 +179,10 @@ export const MainUpperSection = ({ dataInvitation = {}, width }) => {
         <img src={leftLeaf2} className="absolute left-0 top-0" />
         <img src={rightLeaf2} className="absolute right-0 top-[150px]" />
         <div className="z-40 flex w-10/12 flex-col items-center justify-center gap-[10px]">
-          <button className="w-full rounded-[4px] bg-coklat500 px-[12px] py-[4px]">
+          <button
+            className="w-full rounded-[4px] bg-coklat500 px-[12px] py-[4px]"
+            onClick={getDateReminder}
+          >
             <div className="flex items-center justify-center gap-[4px]">
               <BellLogo className="text-coklat100" />
               <p className="font-[alice] text-body4 text-coklat100">
