@@ -16,6 +16,7 @@ export const OnBoarding = ({
 }) => {
   const [isCard, setIsCard] = useState(false);
   const [number, setNumber] = useState("");
+  const [isNumber, setIsNumber] = useState(false);
   const [name, setName] = useState("");
   const [warning, setWarning] = useState("");
 
@@ -34,6 +35,15 @@ export const OnBoarding = ({
     }
   };
 
+  const onChangeName = (e) => {
+    const val = e.target.value;
+    setName(val);
+    if(val != ''){
+      setWarning("");
+    }
+
+  }
+
   const createNewUser = async () => {
     const data = {
       wa_number: number,
@@ -42,6 +52,7 @@ export const OnBoarding = ({
     const dataRes = response?.data || {};
     if (dataRes?.message == "success") {
       getDataInvitation();
+      setIsNumber(true);
     } else {
       console.log(dataRes.message);
       setWarning(dataRes?.message);
@@ -49,15 +60,19 @@ export const OnBoarding = ({
   };
 
   const updateDataUser = async () => {
-    const data = {
-      name: name,
-    };
-    const response = await updateUser(dataInvitation?.user?.id, data);
-    const dataRes = response?.data || {};
-    if (dataRes?.message == "success") {
-      getDataInvitation();
+    if( name != ''){
+      const data = {
+        name: name,
+      };
+      const response = await updateUser(dataInvitation?.user?.id, data);
+      const dataRes = response?.data || {};
+      if (dataRes?.message == "success") {
+        getDataInvitation();
+      } else {
+        setWarning(dataRes?.message);
+      }
     } else {
-      setWarning(dataRes?.message);
+      setWarning('Nama harus diisi');
     }
   };
 
@@ -65,11 +80,10 @@ export const OnBoarding = ({
     if (warning == "") {
       getDataInvitation();
 
-      if (dataInvitation?.invitation?.status === "AVAILABLE" && number != "") {
+      if (dataInvitation?.invitation?.status === "AVAILABLE" && number != "" && !isNumber) {
         createNewUser();
       } else if (
-        dataInvitation?.user?.status === "NEWLY_CREATED" &&
-        name != ""
+        dataInvitation?.user?.status === "NEWLY_CREATED"
       ) {
         updateDataUser();
       } else if (dataInvitation?.user?.status === "INFO_COMPLETED") {
@@ -78,14 +92,12 @@ export const OnBoarding = ({
 
       if (number === "") {
         setWarning("Nomer harus diisi");
-      } else if (name === "") {
-        setWarning("Nama harus diisi");
-      }
+      } 
     }
   };
 
   useEffect(() => {
-    if (dataInvitation?.user?.status === "INFO_COMPLETED") {
+    if (dataInvitation?.user?.status === "INFO_COMPLETED" && dataInvitation?.invitation?.type !== "GROUP") {
       setIsCard(true);
     }
   }, [dataInvitation]);
@@ -106,7 +118,7 @@ export const OnBoarding = ({
       <div className="relative z-20 px-6">
         <p className="font-[alice] text-body4 font-medium">untuk:</p>
         <div className="flex w-full flex-col space-y-2">
-          {dataInvitation?.invitation?.status === "AVAILABLE" && (
+          {dataInvitation?.invitation?.status === "AVAILABLE" && !isNumber &&  (
             <div className="w-full">
               <p className="font-[alice] text-body5 font-light">Nomer</p>
               <input
@@ -120,7 +132,7 @@ export const OnBoarding = ({
               ></input>
             </div>
           )}
-          {dataInvitation?.user?.status === "NEWLY_CREATED" && (
+          {dataInvitation?.user?.status === "NEWLY_CREATED" && isNumber && (
             <div className="w-full">
               <p className="font-[alice] text-body5 font-light">Nama</p>
               <input
@@ -129,12 +141,12 @@ export const OnBoarding = ({
                 className="input-type1 w-full rounded-sm border border-steel500 p-2 text-body5 placeholder:text-body5 placeholder:text-steel400"
                 placeholder="Isi dengan Nama Lengkap Anda"
                 onChange={(e) => {
-                  setName(e.target.value);
+                  onChangeName(e)
                 }}
               ></input>
             </div>
           )}
-          {dataInvitation?.user?.name && (
+          {dataInvitation?.user?.name && dataInvitation?.invitation?.type !== "GROUP" && (
             <div style={{ width: "311px" }}>
               <p className="py-2 text-center font-[tanPearl] text-header3 font-medium text-coklat600 ">
                 {dataInvitation?.user?.name}
@@ -178,7 +190,7 @@ export const OnBoarding = ({
           <img src={imgEnvelope}></img>
         </div>
         <div className="relative left-0 top-0 z-10 flex h-80 w-full justify-center">
-          {!isCard && (
+          {!isCard && dataInvitation && (
             <div
               className="relative flex h-32 w-32 cursor-pointer items-center justify-center rounded-full bg-coklat400 text-center drop-shadow-md"
               onClick={() => onNext()}
