@@ -197,7 +197,7 @@ export const OnBoarding = ({
               className="relative -bottom-5 flex h-9 w-10/12 cursor-pointer items-center justify-center rounded-sm bg-coklat400 text-center drop-shadow-md"
               onClick={() => setStatePage("quizPage")}
             >
-              <CheckCircle />
+              <CheckCircle className="text-white" />
               <p className="px-1 font-[alice] text-body4 font-medium text-white">
                 Terima Tantangan
               </p>
@@ -226,7 +226,7 @@ export const OnBoarding = ({
   };
 
   return (
-    <div className="relative flex h-full w-full flex-col justify-between">
+    <div className="relative flex h-full flex-col justify-between">
       <div className="h-full w-full">
         {header()}
         {inputForm()}

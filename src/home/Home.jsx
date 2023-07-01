@@ -62,10 +62,7 @@ export const Home = () => {
   }
 
   return (
-    <div
-      className="h-screen w-full overflow-hidden bg-white"
-      ref={refContainer}
-    >
+    <div className="h-screen overflow-hidden bg-white" ref={refContainer}>
       {renderContent()}
     </div>
   );
