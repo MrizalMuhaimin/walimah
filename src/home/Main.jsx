@@ -53,7 +53,7 @@ export const Main = ({ dataInvitation = {}, width }) => {
         refQR={refQRSection}
         refGift={refGiftSection}
       />
-      <BottomBar section={activeSection} />
+      <BottomBar section={activeSection} width={width} />
     </div>
   );
 };

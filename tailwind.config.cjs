@@ -77,7 +77,7 @@ module.exports = {
         success100: "#FCFFF8",
       },
       scale: {
-        119: "1.19",
+        120: "1.2",
         "-100": "-1",
       },
       backgroundImage: {
