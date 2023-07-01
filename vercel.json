@@ -1,5 +1,6 @@
 {
-  "rewrites":  [
-    {"source": "/(.*)", "destination": "/"}
+  "rewrites": [
+    { "source": "/:invitationId*", "destination": "/:invitationId*" },
+    { "source": "/(.*)", "destination": "/" }
   ]
 }

@@ -30,7 +30,6 @@ export const Main = ({ dataInvitation = {}, width }) => {
         55 +
         refQRSection.current.offsetTop
     );
-    console.log(heightCalendarSection, heightQRSection, heightGiftSection);
   }, [
     refCalendarSection.current,
     refQRSection.current,
