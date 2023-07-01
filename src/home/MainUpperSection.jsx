@@ -40,6 +40,7 @@ export const MainUpperSection = ({
   const header = useCallback(() => {
     return (
       <div
+        id="aaaa"
         className="relative h-[300px] w-full bg-white pt-6 shadow-[inset_0px_-8px_16px_0px_rgba(70,130,180,0.25)]
           "
         style={{
@@ -54,7 +55,7 @@ export const MainUpperSection = ({
         <div className="flex flex-col items-center justify-center">
           <div className="w-36">
             <p className="text-center font-[tanPearl] text-header2  font-normal text-coklat700">
-              Selamat ya, {dataInvitation?.user?.name}!
+              Selamat ya, {dataInvitation?.invitation?.type === "GROUP" ? `${dataInvitation?.invitation?.name} - ` : ''} {dataInvitation?.user?.name} !
             </p>
           </div>
           <div className="w-72">
@@ -151,7 +152,11 @@ export const MainUpperSection = ({
               <div className="mx-[32px] border border-white" />
               <div>
                 <p className="font-[tanPearl] text-header2">Resepsi</p>
-                <p className="font-[alice] text-body2">10.00 - 11.30 </p>
+                {dataInvitation && (
+                  <p className="font-[alice] text-body2">
+                    {dataInvitation?.invitation?.schedule}
+                  </p>
+                )}
               </div>
             </div>
             <button
