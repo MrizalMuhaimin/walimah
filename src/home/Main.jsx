@@ -7,11 +7,11 @@ import { MusicSideBar } from "../components/MusicSideBar";
 export const Main = ({ dataInvitation = {}, width }) => {
   const refCalendarSection = useRef(null);
   const refQRSection = useRef(null);
-  const refGiftSection = useRef(null);
+  const refSpeechSection = useRef(null);
 
   const [heightCalendarSection, setHeightCalendarSection] = useState(0);
   const [heightQRSection, setHeightQRSection] = useState(0);
-  const [heightGiftSection, setHeightGiftSection] = useState(0);
+  const [heightSpeechSection, setHeightSpeechSection] = useState(0);
 
   const [activeSection, setActiveSection] = useState("CALENDAR");
 
@@ -25,22 +25,22 @@ export const Main = ({ dataInvitation = {}, width }) => {
       refQRSection.current.getBoundingClientRect().top +
         refQRSection.current.offsetTop
     );
-    setHeightGiftSection(
-      refGiftSection.current.getBoundingClientRect().top +
+    setHeightSpeechSection(
+      refSpeechSection.current.getBoundingClientRect().top +
         55 +
         refQRSection.current.offsetTop
     );
   }, [
     refCalendarSection.current,
     refQRSection.current,
-    refGiftSection.current,
+    refSpeechSection.current,
   ]);
 
   const scrollEvent = (e) => {
     const currentHeight = e.target.scrollTop + e.target.offsetHeight;
     switch (true) {
-      case currentHeight > heightGiftSection:
-        setActiveSection("GIFT");
+      case currentHeight > heightSpeechSection:
+        setActiveSection("SPEECH");
         break;
       case currentHeight > heightQRSection:
         setActiveSection("QR");
@@ -58,8 +58,8 @@ export const Main = ({ dataInvitation = {}, width }) => {
 
   const goToPosition = (to) => {
     switch (to) {
-      case "GIFT":
-        refGiftSection.current.scrollIntoView({ behavior: "smooth" });
+      case "SPEECH":
+        refSpeechSection.current.scrollIntoView({ behavior: "smooth" });
         break;
       case "QR":
         refQRSection.current.scrollIntoView({ behavior: "smooth" });
@@ -85,7 +85,7 @@ export const Main = ({ dataInvitation = {}, width }) => {
       <MainBottomSection
         dataInvitation={dataInvitation}
         refQR={refQRSection}
-        refGift={refGiftSection}
+        refSpeech={refSpeechSection}
       />
       <BottomBar
         section={activeSection}

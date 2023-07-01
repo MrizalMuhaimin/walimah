@@ -1,5 +1,5 @@
 import { ReactComponent as CalendarLogo } from "../assets/img/calendar.svg";
-import { ReactComponent as GiftLogo } from "../assets/img/gift.svg";
+import { ReactComponent as SendLogo } from "../assets/img/send.svg";
 import { ReactComponent as QRLogo } from "../assets/img/qr.svg";
 
 export const BottomBar = ({ section, onClickTab }) => {
@@ -24,11 +24,11 @@ export const BottomBar = ({ section, onClickTab }) => {
         </div>
         <div
           className={`flex w-4/12 items-center justify-center ${
-            section === "GIFT" ? "scale-y-120 rounded-t-lg bg-steel100" : ""
+            section === "SPEECH" ? "scale-y-120 rounded-t-lg bg-steel100" : ""
           }`}
-          onClick={() => onClickTab("GIFT")}
+          onClick={() => onClickTab("SPEECH")}
         >
-          <GiftLogo className="h-6 w-6 text-steel500" />
+          <SendLogo className="h-6 w-6 text-steel500" />
         </div>
       </div>
     </div>

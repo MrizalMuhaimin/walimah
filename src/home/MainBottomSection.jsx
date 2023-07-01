@@ -2,14 +2,17 @@ import decoration3 from "./../assets/img/decoration3.svg";
 import leaf2 from "./../assets/img/leaf2.svg";
 import { ReactComponent as Download } from "./../assets/img/download.svg";
 import { ReactComponent as CheckCircle } from "./../assets/img/checkCircle.svg";
-import { ReactComponent as Gift } from "./../assets/img/gift.svg";
 import { ReactComponent as Send } from "./../assets/img/send.svg";
 import streetMrt2 from "./../assets/img/streetMrt2.svg";
 import cloud3 from "./../assets/img/cloud3.svg";
 
 import QRCode from "react-qr-code";
 
-export const MainBottomSection = ({ dataInvitation = {}, refQR, refGift }) => {
+export const MainBottomSection = ({
+  dataInvitation = {},
+  refQR,
+  refSpeech,
+}) => {
   const header = () => {
     return (
       <div className="relative h-48 px-6 text-center" ref={refQR}>
@@ -70,30 +73,6 @@ export const MainBottomSection = ({ dataInvitation = {}, refQR, refGift }) => {
     );
   };
 
-  const gift = () => {
-    return (
-      <div className="flex flex-col justify-center px-6 pb-6" ref={refGift}>
-        <div className="relative px-6 pb-3 pt-6 text-center">
-          <img src={decoration3} className="ml-auto mr-auto"></img>
-          <p className="pt-9 font-[tanPearl] text-header1  font-medium text-steel700 ">
-            Hadiah
-          </p>
-        </div>
-        <div className="flex w-full items-center justify-center gap-[4px] rounded-[4px]  bg-coklat500 px-[12px] py-[4px]">
-          <Gift className="text-white" />
-          <p className="px-2 font-[alice] text-body3 font-medium text-white drop-shadow ">
-            {" "}
-            Lihat Rekening dan Alamat
-          </p>
-        </div>
-        <img
-          src={decoration3}
-          className="ml-auto mr-auto -scale-100 py-2"
-        ></img>
-      </div>
-    );
-  };
-
   const emptyCard = () => {
     return (
       <div
@@ -126,7 +105,7 @@ export const MainBottomSection = ({ dataInvitation = {}, refQR, refGift }) => {
 
   const greetingCard = () => {
     return (
-      <div className="w-full">
+      <div className="w-full" ref={refSpeech}>
         <div className="relative px-6 pb-3 pt-14 text-center">
           <p className="pt-9 font-[tanPearl] text-header1  font-medium text-steel700 ">
             Ucapan
@@ -242,7 +221,7 @@ export const MainBottomSection = ({ dataInvitation = {}, refQR, refGift }) => {
       {header()}
       {qr()}
       {vidio()}
-      {gift()}
+      {/* {gift()} */}
       {greetingCard()}
       {footer()}
     </div>

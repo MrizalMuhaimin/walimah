@@ -55,13 +55,16 @@ export const MainUpperSection = ({
         <div className="flex flex-col items-center justify-center">
           <div className="w-36">
             <p className="text-center font-[tanPearl] text-header2  font-normal text-coklat700">
-              Selamat ya, {dataInvitation?.invitation?.type === "GROUP" ? `${dataInvitation?.invitation?.name} - ` : ''} {dataInvitation?.user?.name} !
+              Selamat ya,{" "}
+              {dataInvitation?.invitation?.type === "GROUP"
+                ? `${dataInvitation?.invitation?.name} - `
+                : ""}{" "}
+              {dataInvitation?.user?.name} !
             </p>
           </div>
           <div className="w-72">
             <p className="text-center font-[alice] text-body3  font-normal text-coklat700">
-              Karena berhasil melewati tantangan yang kita berikan, kami
-              mengundang kamu untuk hadir pada acara
+              Sebagai apresiasi, kami mengundangmu untuk hadir pada pernikahan
             </p>
           </div>
         </div>
@@ -73,7 +76,7 @@ export const MainUpperSection = ({
       <div className="flex w-full flex-col items-center justify-center">
         <img src={decoration2} className="-mt-9 w-[130px]" />
         <p className="font-[alice] text-body2 text-white">23 Juli 2023</p>
-        <p className="font-[tanPearl] text-header1 text-white">Akram & Afra</p>
+        <p className="font-[tanPearl] text-header1 text-white">Afra & Akram</p>
         <img src={decoration1} className="w-[305px]" />
         <div className="w-full py-[32px]">
           <img src={streetMrt} className="object-fill" />
@@ -102,7 +105,7 @@ export const MainUpperSection = ({
           <div className="flex  flex-col justify-center font-[alice] text-body4 text-steel700">
             <p>Putri ke-2 keluarga</p>
             <p>Bapak Ismir Kamili & Ibu Yuria Pratiwhi Cleopatra</p>
-            <p>(Antapani, Bandung)</p>
+            <p>(Bandung)</p>
           </div>
         </div>
         <div className="flex items-center justify-center">
@@ -116,8 +119,8 @@ export const MainUpperSection = ({
           </p>
           <div className="flex  flex-col justify-center font-[alice] text-body4 text-steel700">
             <p>Putra ke-3 keluarga</p>
-            <p>Bapak Edy Rianto & Ibu Diana Laelawati</p>
-            <p>(Sewon, Bantul)</p>
+            <p>Bapak Edy Riyanto & Ibu Diana Laelawati</p>
+            <p>(Bantul)</p>
           </div>
         </div>
       </div>
@@ -140,21 +143,21 @@ export const MainUpperSection = ({
                 Bale Dayang Sumbi Itenas
               </p>
               <p className="font-[alice] text-body2">
-                Jl. PP.H. Mustofa No.23, Neglasari, Cibeunying Kaler, Bandung
-                City, West Java 40124, Indonesia
+                Jl. Phh. Mustofa No.23, Neglasari, Cibeunying Kaler, Kota
+                Bandung, Jawa Barat 40124, Indonesia
               </p>
             </div>
             <div className="flex justify-between pb-[8px]">
               <div>
                 <p className="font-[tanPearl] text-header2">Akad</p>
-                <p className="font-[alice] text-body2">08.00 - 09.30</p>
+                <p className="font-[alice] text-body2">09.00 - 10.00 WIB</p>
               </div>
               <div className="mx-[32px] border border-white" />
               <div>
                 <p className="font-[tanPearl] text-header2">Resepsi</p>
                 {dataInvitation && (
                   <p className="font-[alice] text-body2">
-                    {dataInvitation?.invitation?.schedule}
+                    {dataInvitation?.invitation?.schedule} WIB
                   </p>
                 )}
               </div>
