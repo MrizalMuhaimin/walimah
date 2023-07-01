@@ -13,7 +13,7 @@ import QRCode from "react-qr-code";
 export const MainBottomSection = ({ dataInvitation = {}, refQR, refGift }) => {
   const header = () => {
     return (
-      <div className="relative h-48 px-6 pt-6 text-center" ref={refQR}>
+      <div className="relative h-48 px-6 text-center" ref={refQR}>
         <p className="pt-9 font-[tanPearl] text-header1 font-medium text-steel700 ">
           Kehadiran
         </p>
