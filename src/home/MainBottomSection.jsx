@@ -40,7 +40,7 @@ export const MainBottomSection = ({
     try {
       await videoReminder(dataInvitation.user.id);
     } catch (error) {
-      console.log(error);
+      console.log('error');
     }
   };
 
@@ -57,7 +57,7 @@ export const MainBottomSection = ({
       }
     } catch (error) {
       setDataMyComment("");
-      console.log(error);
+      console.log('error');
     }
   };
 
@@ -70,11 +70,11 @@ export const MainBottomSection = ({
 
       const response = await createRsvp(dataInvitation.user.id, data);
       if (response?.data?.message === "success") {
-        console.log(response);
+        console.log('response');
       }
     } catch (error) {
       setDataMyComment("");
-      console.log(error);
+      console.log('error');
     }
   };
 
@@ -91,7 +91,7 @@ export const MainBottomSection = ({
       }
     } catch (error) {
       setDataMyComment("");
-      console.log(error);
+      console.log('error');
     }
   };
 
@@ -105,7 +105,7 @@ export const MainBottomSection = ({
         setIsUpdateGetComment(!isUpdateGetComment);
       }
     } catch (error) {
-      console.log(error);
+      console.log('error');
     }
   };
 
@@ -118,7 +118,7 @@ export const MainBottomSection = ({
       }
     } catch (error) {
       setDataMyComment("");
-      console.log(error);
+      console.log('error');
     }
   };
 
@@ -362,6 +362,7 @@ export const MainBottomSection = ({
   const cardItem = (val = {}) => {
     return (
       <div
+        key={val?.id}
         id={val?.id}
         style={{ height: 142 }}
         className="rounded  border border-coklat400 p-2 "
