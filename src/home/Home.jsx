@@ -4,7 +4,7 @@ import { OnBoarding } from "./OnBoarding.jsx";
 import { Quiz } from "../home/Quiz.jsx";
 import { Main } from "./Main.jsx";
 
-import { getInvitation } from "./../services/invitations";
+import { getInvitation, cekInvitation } from "./../services/invitations";
 import { useSize } from "../helpers/hooks/useSize.js";
 
 export const Home = () => {
@@ -42,7 +42,17 @@ export const Home = () => {
       const data = response?.data || {};
       setDataInvitation(data);
     } catch (error) {
-      console.log('error')
+      console.log("error");
+    }
+  };
+
+  const updateDataInvitationByNumber = async (number) => {
+    try {
+      const response = await cekInvitation(number);
+      const data = response?.data || {};
+      setDataInvitation(data);
+    } catch (error) {
+      console.log("error");
     }
   };
 
@@ -60,12 +70,22 @@ export const Home = () => {
             getDataInvitation={() => {
               getDataInvitation(idInvitation);
             }}
+            updateDataInvitationByNumber={updateDataInvitationByNumber}
           />
         );
       case "quizPage":
         return <Quiz setStatePage={setPage} />;
       case "mainPage":
-        return <Main dataInvitation={dataInvitation} width={size.width} updateDataInvitation={() => {updateDataInvitation(idInvitation)}} />;
+        return (
+          <Main
+            dataInvitation={dataInvitation}
+            width={size.width}
+            updateDataInvitation={() => {
+              updateDataInvitation(idInvitation);
+            }}
+            updateDataInvitationByNumber={updateDataInvitationByNumber}
+          />
+        );
       default:
         return <OnBoarding />;
     }

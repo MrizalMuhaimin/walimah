@@ -6,3 +6,10 @@ export function getInvitation (params) {
       url: `/invitations/${params}`,
     });
 }
+
+export function cekInvitation (path) {
+  return makeCallApi({
+    method: 'GET',
+    url: `/invitations/group/${path}`,
+  });
+}

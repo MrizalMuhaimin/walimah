@@ -8,16 +8,20 @@ import card from "./../assets/img/card.svg";
 import { ReactComponent as CheckCircle } from "./../assets/img/checkCircle.svg";
 
 import { createUser, updateUser } from "./../services/user";
+import { cekInvitation } from "./../services/invitations";
 
 export const OnBoarding = ({
   setStatePage = () => {},
   dataInvitation = {},
   getDataInvitation = () => {},
+  updateDataInvitationByNumber = () => {},
 }) => {
   const [isCard, setIsCard] = useState(false);
   const [number, setNumber] = useState("");
   const [isNumber, setIsNumber] = useState(false);
   const [name, setName] = useState("");
+  const [isName, setIsName] = useState(false);
+  const [showName, setShowName] = useState(false);
   const [warning, setWarning] = useState("");
 
   const onChangeNumber = (e) => {
@@ -38,11 +42,23 @@ export const OnBoarding = ({
   const onChangeName = (e) => {
     const val = e.target.value;
     setName(val);
-    if(val != ''){
+    if (val != "") {
       setWarning("");
     }
+  };
 
-  }
+  const getUserByNumber = async () => {
+    const response = await cekInvitation(number);
+    const dataRes = response?.data || {};
+    if (dataRes?.message == "success") {
+      console.log(dataRes.message);
+      updateDataInvitationByNumber(number);
+      setIsNumber(false);
+    } else {
+      console.log(dataRes.message);
+      createNewUser();
+    }
+  };
 
   const createNewUser = async () => {
     const data = {
@@ -51,8 +67,13 @@ export const OnBoarding = ({
     const response = await createUser(dataInvitation?.invitation?.id, data);
     const dataRes = response?.data || {};
     if (dataRes?.message == "success") {
-      getDataInvitation();
-      setIsNumber(true);
+      if (dataInvitation?.invitation?.type == "SINGLE") {
+        getDataInvitation();
+      } else {
+        updateDataInvitationByNumber(number);
+      }
+      setIsNumber(false);
+      setIsName(true);
     } else {
       console.log(dataRes.message);
       setWarning(dataRes?.message);
@@ -60,19 +81,26 @@ export const OnBoarding = ({
   };
 
   const updateDataUser = async () => {
-    if( name != ''){
+    if (name != "") {
       const data = {
         name: name,
       };
       const response = await updateUser(dataInvitation?.user?.id, data);
       const dataRes = response?.data || {};
       if (dataRes?.message == "success") {
-        getDataInvitation();
+        setIsName(false);
+        setIsNumber(false);
+        if (dataInvitation?.invitation?.type == "SINGLE") {
+          getDataInvitation();
+        } else {
+          updateDataInvitationByNumber(number);
+        }
+        setIsCard(true);
       } else {
         setWarning(dataRes?.message);
       }
     } else {
-      setWarning('Nama harus diisi');
+      setWarning("Nama harus diisi");
     }
   };
 
@@ -80,11 +108,21 @@ export const OnBoarding = ({
     if (warning == "") {
       getDataInvitation();
 
-      if (dataInvitation?.invitation?.status === "AVAILABLE" && number != "" && !isNumber) {
-        createNewUser();
-      } else if (
-        dataInvitation?.user?.status === "NEWLY_CREATED"
+      if (
+        dataInvitation?.invitation?.status === "AVAILABLE" &&
+        number != "" &&
+        dataInvitation?.invitation?.type == "SINGLE"
       ) {
+        createNewUser();
+      }
+      if (
+        dataInvitation?.invitation?.status === "AVAILABLE" &&
+        number != "" &&
+        dataInvitation?.invitation?.type == "GROUP" &&
+        dataInvitation?.user?.status != "NEWLY_CREATED"
+      ) {
+        getUserByNumber();
+      } else if (dataInvitation?.user?.status === "NEWLY_CREATED") {
         updateDataUser();
       } else if (dataInvitation?.user?.status === "INFO_COMPLETED") {
         setIsCard(true);
@@ -92,13 +130,63 @@ export const OnBoarding = ({
 
       if (number === "") {
         setWarning("Nomer harus diisi");
-      } 
+      }
     }
   };
 
   useEffect(() => {
-    if (dataInvitation?.user?.status === "INFO_COMPLETED" && dataInvitation?.invitation?.type !== "GROUP") {
+    if (
+      dataInvitation?.user?.status === "INFO_COMPLETED" &&
+      dataInvitation?.invitation?.type == "SINGLE"
+    ) {
       setIsCard(true);
+      setIsName(false);
+      setIsNumber(false);
+      setShowName(true);
+    }
+
+    if (
+      dataInvitation?.user?.status == "NEWLY_CREATED" &&
+      dataInvitation?.invitation?.type == "SINGLE"
+    ) {
+      setIsName(true);
+      setIsNumber(false);
+    }
+
+    if (
+      dataInvitation?.invitation?.status == "AVAILABLE" &&
+      dataInvitation?.invitation?.type == "SINGLE"
+    ) {
+      setIsNumber(true);
+    }
+
+    if (
+      dataInvitation?.invitation?.status == "AVAILABLE" &&
+      dataInvitation?.invitation?.type == "GROUP" &&
+      dataInvitation?.user?.status == "RSVP_PROVIDED"
+    ) {
+      setStatePage("mainPage");
+    } else if (
+      dataInvitation?.invitation?.status == "AVAILABLE" &&
+      dataInvitation?.invitation?.type == "GROUP" &&
+      dataInvitation?.user?.status == "NEWLY_CREATED"
+    ) {
+      setIsNumber(false);
+      setIsName(true);
+    } else if (
+      dataInvitation?.invitation?.status == "AVAILABLE" &&
+      dataInvitation?.invitation?.type == "GROUP" &&
+      dataInvitation?.user?.status == "INFO_COMPLETED"
+    ) {
+      setIsCard(true);
+      setIsName(false);
+      setIsNumber(false);
+      setShowName(true);
+    } else if (
+      dataInvitation?.invitation?.status == "AVAILABLE" &&
+      dataInvitation?.invitation?.type == "GROUP"
+    ) {
+      setIsNumber(true);
     }
   }, [dataInvitation]);
 
@@ -118,7 +206,7 @@ export const OnBoarding = ({
       <div className="relative z-20 px-6">
         <p className="font-[alice] text-body4 font-medium">untuk:</p>
         <div className="flex w-full flex-col space-y-2">
-          {dataInvitation?.invitation?.status === "AVAILABLE" && !isNumber &&  (
+          {isNumber && (
             <div className="w-full">
               <p className="font-[alice] text-body5 font-light">Nomer</p>
               <input
@@ -132,7 +220,7 @@ export const OnBoarding = ({
               ></input>
             </div>
           )}
-          {dataInvitation?.user?.status === "NEWLY_CREATED" && isNumber && (
+          {isName && (
             <div className="w-full">
               <p className="font-[alice] text-body5 font-light">Nama</p>
               <input
@@ -141,12 +229,12 @@ export const OnBoarding = ({
                 className="input-type1 w-full rounded-sm border border-steel500 p-2 text-body5 placeholder:text-body5 placeholder:text-steel400"
                 placeholder="Isi dengan Nama Lengkap Anda"
                 onChange={(e) => {
-                  onChangeName(e)
+                  onChangeName(e);
                 }}
               ></input>
             </div>
           )}
-          {dataInvitation?.user?.name && dataInvitation?.invitation?.type !== "GROUP" && (
+          {showName && (
             <div style={{ width: "311px" }}>
               <p className="py-2 text-center font-[tanPearl] text-header3 font-medium text-coklat600 ">
                 {dataInvitation?.user?.name}

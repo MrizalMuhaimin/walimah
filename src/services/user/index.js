@@ -23,3 +23,11 @@ export function createRsvp(userId, data) {
     data
   });
 }
+
+export function unduhQr(userId) {
+  return makeCallApi({
+    method: 'GET',
+    url: `/users/${userId}/qr-code/download`,
+    responseType: 'blob',
+  });
+}

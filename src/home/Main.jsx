@@ -8,6 +8,7 @@ export const Main = ({
   dataInvitation = {},
   width,
   updateDataInvitation = () => {},
+  updateDataInvitationByNumber = () => {},
 }) => {
   const refCalendarSection = useRef(null);
   const refQRSection = useRef(null);
@@ -86,12 +87,14 @@ export const Main = ({
         width={width}
         refCalendar={refCalendarSection}
         updateDataInvitation={updateDataInvitation}
+        updateDataInvitationByNumber={updateDataInvitationByNumber}
       />
       <MainBottomSection
         dataInvitation={dataInvitation}
         refQR={refQRSection}
         refSpeech={refSpeechSection}
         updateDataInvitation={updateDataInvitation}
+        updateDataInvitationByNumber={updateDataInvitationByNumber}
       />
       <BottomBar
         section={activeSection}
