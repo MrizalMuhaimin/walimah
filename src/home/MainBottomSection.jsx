@@ -391,6 +391,10 @@ export const MainBottomSection = ({
   const greetingCard = () => {
     return (
       <div className="w-full" ref={refSpeech}>
+        <img
+          src={decoration3}
+          className="ml-auto mr-auto -scale-100 py-6"
+        ></img>
         <div className="relative px-6 pb-3 pt-14 text-center">
           <p className="pt-9 font-[tanPearl] text-header1  font-medium text-steel700 ">
             Ucapan
