@@ -14,8 +14,7 @@ export const OnBoarding = ({
   setStatePage = () => {},
   dataInvitation = {},
   getDataInvitation = () => {},
-  updateDataInvitationByNumber = ()=> {},
-
+  updateDataInvitationByNumber = () => {},
 }) => {
   const [isCard, setIsCard] = useState(false);
   const [number, setNumber] = useState("");
@@ -119,7 +118,8 @@ export const OnBoarding = ({
       if (
         dataInvitation?.invitation?.status === "AVAILABLE" &&
         number != "" &&
-        dataInvitation?.invitation?.type == "GROUP" && dataInvitation?.user?.status != "NEWLY_CREATED"
+        dataInvitation?.invitation?.type == "GROUP" &&
+        dataInvitation?.user?.status != "NEWLY_CREATED"
       ) {
         getUserByNumber();
       } else if (dataInvitation?.user?.status === "NEWLY_CREATED") {
@@ -159,17 +159,21 @@ export const OnBoarding = ({
     ) {
       setIsNumber(true);
     }
-    
 
     if (
+      dataInvitation?.invitation?.status == "AVAILABLE" &&
+      dataInvitation?.invitation?.type == "GROUP" &&
+      dataInvitation?.user?.status == "RSVP_PROVIDED"
+    ) {
+      setStatePage("mainPage");
+    } else if (
       dataInvitation?.invitation?.status == "AVAILABLE" &&
       dataInvitation?.invitation?.type == "GROUP" &&
       dataInvitation?.user?.status == "NEWLY_CREATED"
     ) {
       setIsNumber(false);
       setIsName(true);
-
-    }if (
+    } else if (
       dataInvitation?.invitation?.status == "AVAILABLE" &&
       dataInvitation?.invitation?.type == "GROUP" &&
       dataInvitation?.user?.status == "INFO_COMPLETED"
@@ -178,8 +182,7 @@ export const OnBoarding = ({
       setIsName(false);
       setIsNumber(false);
       setShowName(true);
-
-    }else if (
+    } else if (
       dataInvitation?.invitation?.status == "AVAILABLE" &&
       dataInvitation?.invitation?.type == "GROUP"
     ) {

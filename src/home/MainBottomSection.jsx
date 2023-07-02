@@ -29,7 +29,6 @@ export const MainBottomSection = ({
   refSpeech,
   updateDataInvitation = () => {},
   updateDataInvitationByNumber = () => {},
-  
 }) => {
   const [isModal, setIsModal] = useState(false);
   const [cPeople, setCPeople] = useState(1);
@@ -54,7 +53,14 @@ export const MainBottomSection = ({
 
   const getMyQR = async () => {
     try {
-      await unduhQr(dataInvitation.user.id);
+      const response = await unduhQr(dataInvitation.user.id);
+      const url = window.URL.createObjectURL(new Blob([response.data], { type: 'image/png' }));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', `qr_${dataInvitation.user.name}.png`);
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
     } catch (error) {
       console.log("error");
     }
@@ -166,11 +172,10 @@ export const MainBottomSection = ({
   }, [isUpdateGetComment]);
 
   useEffect(() => {
-    if(dataInvitation?.invitation?.type == "SINGLE"){
-      updateDataInvitation()
-
-    }else {
-      updateDataInvitationByNumber(dataInvitation.user.wa_number)
+    if (dataInvitation?.invitation?.type == "SINGLE") {
+      updateDataInvitation();
+    } else {
+      updateDataInvitationByNumber(dataInvitation.user.wa_number);
     }
   }, [isUpdateDataUser]);
 
