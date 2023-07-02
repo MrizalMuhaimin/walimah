@@ -23,6 +23,7 @@ export const MainUpperSection = ({
   width,
   refCalendar,
   updateDataInvitation = () => {},
+  updateDataInvitationByNumber = () => {},
 }) => {
   const [days, hours, minutes, seconds] = useCountdown("2023-07-23T01:00:00Z");
 
@@ -30,7 +31,13 @@ export const MainUpperSection = ({
 
     try {
       await dateReminder(dataInvitation.user.id);
-      updateDataInvitation()
+      if(dataInvitation?.invitation?.type == "SINGLE"){
+        updateDataInvitation()
+
+      }else {
+        updateDataInvitationByNumber(dataInvitation.user.wa_number)
+      }
+      
     } catch (error) {
       console.log(error);
     }

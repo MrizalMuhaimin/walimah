@@ -21,13 +21,15 @@ import {
 } from "../services/comment";
 
 import { Pagination } from "../components/Pagination";
-import { createRsvp } from "../services/user";
+import { createRsvp, unduhQr } from "../services/user";
 
 export const MainBottomSection = ({
   dataInvitation = {},
   refQR,
   refSpeech,
   updateDataInvitation = () => {},
+  updateDataInvitationByNumber = () => {},
+  
 }) => {
   const [isModal, setIsModal] = useState(false);
   const [cPeople, setCPeople] = useState(1);
@@ -45,6 +47,14 @@ export const MainBottomSection = ({
     try {
       await videoReminder(dataInvitation.user.id);
       setIsUpdateDataUser(!isUpdateDataUser);
+    } catch (error) {
+      console.log("error");
+    }
+  };
+
+  const getMyQR = async () => {
+    try {
+      await unduhQr(dataInvitation.user.id);
     } catch (error) {
       console.log("error");
     }
@@ -119,7 +129,7 @@ export const MainBottomSection = ({
 
   const getMyComment = async () => {
     try {
-      const response = await myComment(dataInvitation.user.id);
+      const response = await myComment(dataInvitation?.user?.id);
       if (response?.data) {
         setDataMyComment(response?.data?.comment);
         setIdMyComment(response?.data?.comment_id);
@@ -156,7 +166,12 @@ export const MainBottomSection = ({
   }, [isUpdateGetComment]);
 
   useEffect(() => {
-    updateDataInvitation();
+    if(dataInvitation?.invitation?.type == "SINGLE"){
+      updateDataInvitation()
+
+    }else {
+      updateDataInvitationByNumber(dataInvitation.user.wa_number)
+    }
   }, [isUpdateDataUser]);
 
   const copyText = (text) => {
@@ -169,7 +184,7 @@ export const MainBottomSection = ({
 
   const onChangePage = (type = "+") => {
     if (page <= totalPage && type === "+") {
-      if(page == totalPage){
+      if (page == totalPage) {
         return;
       }
       return setPage(page + 1);
@@ -358,12 +373,18 @@ export const MainBottomSection = ({
               setVidioReminder();
             }}
             className={`flex w-full cursor-pointer items-center justify-center gap-[4px]  rounded-[4px]  px-[12px] py-[4px] ${
-              dataInvitation?.user.is_video_reminder_sent != '1' ? "bg-[#BABABA]" : "bg-coklat600"
+              dataInvitation?.user.is_video_reminder_sent != "1"
+                ? "bg-[#BABABA]"
+                : "bg-coklat600"
             } `}
           >
-            <CheckCircle className={`${
-              dataInvitation?.user.is_video_reminder_sent != '1' ? "text-green-700 " : "text-white"
-            } `} />
+            <CheckCircle
+              className={`${
+                dataInvitation?.user.is_video_reminder_sent != "1"
+                  ? "text-green-700 "
+                  : "text-white"
+              } `}
+            />
             <p className="select-none px-2 font-[alice] text-body3 font-medium text-white drop-shadow">
               {" "}
               Ingatkan saya untuk kirim video
@@ -473,7 +494,12 @@ export const MainBottomSection = ({
           {dataComments.length == 0 && emptyCard()}
           {dataComments.length > 0 && dataComments.map((val) => cardItem(val))}
         </div>
-        <Pagination page={page} totalPage={totalPage} onChange={onChangePage} setPage={setPage} />
+        <Pagination
+          page={page}
+          totalPage={totalPage}
+          onChange={onChangePage}
+          setPage={setPage}
+        />
       </div>
     );
   };
@@ -483,15 +509,22 @@ export const MainBottomSection = ({
       <div className="w-full">
         <div className="relative bg-white px-6 py-6 text-center">
           <div className="mb-6">
-            <QRCode
-              fgColor="#6E513B"
-              size={256}
-              style={{ height: "auto", maxWidth: "100%", width: "100%" }}
-              value={dataInvitation?.user?.id}
-              viewBox={`0 0 256 256`}
-            />
+            {dataInvitation?.user?.id && (
+              <QRCode
+                fgColor="#6E513B"
+                size={256}
+                style={{ height: "auto", maxWidth: "100%", width: "100%" }}
+                value={dataInvitation?.user?.id || "A"}
+                viewBox={`0 0 256 256`}
+              />
+            )}
           </div>
-          <div className="flex w-full cursor-pointer items-center justify-center gap-[4px]  rounded-[4px] bg-coklat500 px-[12px] py-[4px]">
+          <div
+            onClick={() => {
+              getMyQR();
+            }}
+            className="flex w-full cursor-pointer items-center justify-center gap-[4px]  rounded-[4px] bg-coklat500 px-[12px] py-[4px]"
+          >
             <Download />
             <p className="select-none px-2 font-[alice] text-body3 font-medium text-white">
               {" "}
@@ -556,9 +589,9 @@ export const MainBottomSection = ({
               isDisableRSVC ? "bg-[#BABABA] " : "bg-coklat600"
             } `}
           >
-            <CheckCircle className={`${
-              isDisableRSVC ? "text-green-700 " : "text-white"
-            } `} />
+            <CheckCircle
+              className={`${isDisableRSVC ? "text-green-700 " : "text-white"} `}
+            />
             <p className="select-none px-2 font-[alice] text-body3 font-medium text-white">
               {" "}
               Konfirmasi
