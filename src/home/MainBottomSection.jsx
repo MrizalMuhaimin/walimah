@@ -329,7 +329,6 @@ export const MainBottomSection = ({
             <li>Format .mp4, .mkv atau .mov</li>
             <li>Video dibuat dalam layout landscape</li>
             <li>Durasi maksimal 1 menit</li>
-            njs
           </ul>
           <div
             onClick={() => {
