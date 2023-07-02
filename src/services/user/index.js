@@ -15,3 +15,11 @@ export function updateUser (userId, data) {
     data
   });
 }
+
+export function createRsvp(userId, data) {
+  return makeCallApi({
+    method: 'POST',
+    url: `/users/${userId}/rsvp`,
+    data
+  });
+}

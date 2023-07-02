@@ -25,6 +25,7 @@ module.exports = {
         //  Steel Blue:
         steel100: "#EDF3F8",
         steel700: "#2B506E",
+        steel600: "#396A93",
         steel500: "#4682B4",
         steel400: "#7EAACD",
         steel300: "#A3C2DB",

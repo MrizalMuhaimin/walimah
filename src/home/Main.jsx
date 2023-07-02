@@ -4,7 +4,11 @@ import { MainUpperSection } from "./MainUpperSection";
 import { BottomBar } from "../components/BottomBar";
 import { MusicSideBar } from "../components/MusicSideBar";
 
-export const Main = ({ dataInvitation = {}, width }) => {
+export const Main = ({
+  dataInvitation = {},
+  width,
+  updateDataInvitation = () => {},
+}) => {
   const refCalendarSection = useRef(null);
   const refQRSection = useRef(null);
   const refSpeechSection = useRef(null);
@@ -81,11 +85,13 @@ export const Main = ({ dataInvitation = {}, width }) => {
         dataInvitation={dataInvitation}
         width={width}
         refCalendar={refCalendarSection}
+        updateDataInvitation={updateDataInvitation}
       />
       <MainBottomSection
         dataInvitation={dataInvitation}
         refQR={refQRSection}
         refSpeech={refSpeechSection}
+        updateDataInvitation={updateDataInvitation}
       />
       <BottomBar
         section={activeSection}

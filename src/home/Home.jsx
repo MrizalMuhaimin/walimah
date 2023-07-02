@@ -36,6 +36,16 @@ export const Home = () => {
     }
   };
 
+  const updateDataInvitation = async (invitationId) => {
+    try {
+      const response = await getInvitation(invitationId);
+      const data = response?.data || {};
+      setDataInvitation(data);
+    } catch (error) {
+      console.log('error')
+    }
+  };
+
   useEffect(() => {
     getDataInvitation(idInvitation);
   }, [idInvitation]);
@@ -55,7 +65,7 @@ export const Home = () => {
       case "quizPage":
         return <Quiz setStatePage={setPage} />;
       case "mainPage":
-        return <Main dataInvitation={dataInvitation} width={size.width} />;
+        return <Main dataInvitation={dataInvitation} width={size.width} updateDataInvitation={() => {updateDataInvitation(idInvitation)}} />;
       default:
         return <OnBoarding />;
     }
