@@ -8,10 +8,10 @@ export function creteComment(userId, data) {
   });
 }
 
-export function updateComment(userId, data) {
+export function updateComment(commentId, data) {
   return makeCallApi({
     method: "PUT",
-    url: `/users/${userId}/comment`,
+    url: `/users/${commentId}/comment`,
     data,
   });
 }

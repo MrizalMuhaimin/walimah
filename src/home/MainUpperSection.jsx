@@ -22,12 +22,15 @@ export const MainUpperSection = ({
   dataInvitation = {},
   width,
   refCalendar,
+  updateDataInvitation = () => {},
 }) => {
   const [days, hours, minutes, seconds] = useCountdown("2023-07-23T01:00:00Z");
 
   const getDateReminder = async () => {
+
     try {
       await dateReminder(dataInvitation.user.id);
+      updateDataInvitation()
     } catch (error) {
       console.log(error);
     }
@@ -193,11 +196,11 @@ export const MainUpperSection = ({
         <img src={rightLeaf2} className="absolute right-0 top-[150px]" />
         <div className="z-40 flex w-10/12 flex-col items-center justify-center gap-[10px]">
           <button
-            className="w-full rounded-[4px] bg-coklat500 px-[12px] py-[4px]"
+            className={`w-full rounded-[4px]  px-[12px] py-[4px] ${dataInvitation?.user?.is_date_reminder_sent != 1 ? 'bg-[#BABABA]': 'bg-coklat500'}`}
             onClick={getDateReminder}
           >
             <div className="flex items-center justify-center gap-[4px]">
-              <BellLogo className="text-coklat100" />
+              <BellLogo className={`${dataInvitation?.user?.is_date_reminder_sent != 1 ? 'text-green-700': 'text-white'}`} />
               <p className="font-[alice] text-body4 text-coklat100">
                 Ingatkan Saya
               </p>

@@ -20,12 +20,14 @@ import {
   likeComment,
 } from "../services/comment";
 
+import { Pagination } from "../components/Pagination";
 import { createRsvp } from "../services/user";
 
 export const MainBottomSection = ({
   dataInvitation = {},
   refQR,
   refSpeech,
+  updateDataInvitation = () => {},
 }) => {
   const [isModal, setIsModal] = useState(false);
   const [cPeople, setCPeople] = useState(1);
@@ -34,13 +36,17 @@ export const MainBottomSection = ({
   const [dataMyComment, setDataMyComment] = useState("");
   const [idMyComment, setIdMyComment] = useState("");
   const [isUpdateGetComment, setIsUpdateGetComment] = useState(false);
+  const [isUpdateDataUser, setIsUpdateDataUser] = useState(false);
   const [isDisableRSVC, setIsDisableRSVC] = useState(false);
+  const [page, setPage] = useState(1);
+  const [totalPage, setTotalPage] = useState(1);
 
   const setVidioReminder = async () => {
     try {
       await videoReminder(dataInvitation.user.id);
+      setIsUpdateDataUser(!isUpdateDataUser);
     } catch (error) {
-      console.log('error');
+      console.log("error");
     }
   };
 
@@ -57,7 +63,7 @@ export const MainBottomSection = ({
       }
     } catch (error) {
       setDataMyComment("");
-      console.log('error');
+      console.log("error");
     }
   };
 
@@ -70,11 +76,12 @@ export const MainBottomSection = ({
 
       const response = await createRsvp(dataInvitation.user.id, data);
       if (response?.data?.message === "success") {
-        console.log('response');
+        setIsUpdateDataUser(!isUpdateDataUser);
+        console.log("response");
       }
     } catch (error) {
       setDataMyComment("");
-      console.log('error');
+      console.log("error");
     }
   };
 
@@ -84,14 +91,15 @@ export const MainBottomSection = ({
         comment: dataMyComment,
       };
 
-      const response = await updateComment(dataInvitation.user.id, data);
+      const response = await updateComment(idMyComment, data);
       if (response?.data?.message === "success") {
         setDataMyComment(response?.data?.comment);
         setIdMyComment(response?.data?.comment_id);
+        setIsUpdateGetComment(!isUpdateGetComment);
       }
     } catch (error) {
       setDataMyComment("");
-      console.log('error');
+      console.log("error");
     }
   };
 
@@ -105,7 +113,7 @@ export const MainBottomSection = ({
         setIsUpdateGetComment(!isUpdateGetComment);
       }
     } catch (error) {
-      console.log('error');
+      console.log("error");
     }
   };
 
@@ -118,7 +126,7 @@ export const MainBottomSection = ({
       }
     } catch (error) {
       setDataMyComment("");
-      console.log('error');
+      console.log("error");
     }
   };
 
@@ -128,6 +136,7 @@ export const MainBottomSection = ({
     };
     const response = await comments(dataInvitation.user.id, params);
     const dataRes = response?.data?.items || [];
+    setTotalPage(response?.data?.total_pages);
     setDataComments(dataRes);
   };
 
@@ -146,6 +155,10 @@ export const MainBottomSection = ({
     getComments();
   }, [isUpdateGetComment]);
 
+  useEffect(() => {
+    updateDataInvitation();
+  }, [isUpdateDataUser]);
+
   const copyText = (text) => {
     navigator.clipboard.writeText(text);
   };
@@ -154,6 +167,16 @@ export const MainBottomSection = ({
     setDataMyComment(e.target.value);
   };
 
+  const onChangePage = (type = "+") => {
+    if (page <= totalPage && type === "+") {
+      if(page == totalPage){
+        return;
+      }
+      return setPage(page + 1);
+    } else {
+      return setPage((state) => (state - 1 <= 1 ? 1 : state - 1));
+    }
+  };
   const onChangeNumber = (type = "+") => {
     if (isAttending == "true" && isAttending) {
       if (type === "+") {
@@ -271,7 +294,7 @@ export const MainBottomSection = ({
                 <button
                   type="button"
                   onClick={() => setIsModal(false)}
-                  className="mt-3 inline-flex w-full justify-center rounded-md bg-coklat500 px-3 py-2 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-coklat600 sm:mt-0 sm:w-auto"
+                  className="mt-3 inline-flex w-full justify-center rounded-md bg-coklat500 px-3 py-2 text-body4 font-semibold text-white shadow-sm  ring-gray-300 hover:bg-coklat600 sm:mt-0 sm:w-auto"
                 >
                   Kembali
                 </button>
@@ -334,9 +357,13 @@ export const MainBottomSection = ({
             onClick={() => {
               setVidioReminder();
             }}
-            className="flex w-full cursor-pointer items-center justify-center gap-[4px]  rounded-[4px] bg-coklat600 px-[12px] py-[4px] "
+            className={`flex w-full cursor-pointer items-center justify-center gap-[4px]  rounded-[4px]  px-[12px] py-[4px] ${
+              dataInvitation?.user.is_video_reminder_sent != '1' ? "bg-[#BABABA]" : "bg-coklat600"
+            } `}
           >
-            <CheckCircle className="text-white" />
+            <CheckCircle className={`${
+              dataInvitation?.user.is_video_reminder_sent != '1' ? "text-green-700 " : "text-white"
+            } `} />
             <p className="select-none px-2 font-[alice] text-body3 font-medium text-white drop-shadow">
               {" "}
               Ingatkan saya untuk kirim video
@@ -374,7 +401,13 @@ export const MainBottomSection = ({
         </p>
         <p className="py-2 text-body4">{val?.comment}</p>
         <div className="flex">
-          {val?.is_liked && <img src={favorite} />}
+          {val?.is_liked && (
+            <img
+              src={favorite}
+              onClick={() => likeTheComment(val?.id)}
+              className="cursor-pointer"
+            />
+          )}
           {!val?.is_liked && (
             <img
               src={unfavorite}
@@ -440,6 +473,7 @@ export const MainBottomSection = ({
           {dataComments.length == 0 && emptyCard()}
           {dataComments.length > 0 && dataComments.map((val) => cardItem(val))}
         </div>
+        <Pagination page={page} totalPage={totalPage} onChange={onChangePage} setPage={setPage} />
       </div>
     );
   };
@@ -470,7 +504,11 @@ export const MainBottomSection = ({
               disabled={isDisableRSVC}
               onChange={(e) => onChangeAtt(e)}
               value={isAttending}
-              className={`cursor-pointer rounded border px-2 py-1 text-body4 ${isDisableRSVC ? 'bg-[#BABABA] border-[#BABABA] text-slate-50':'border-coklat500 bg-white '}`}
+              className={`cursor-pointer rounded border px-2 py-1 text-body4 ${
+                isDisableRSVC
+                  ? "border-[#BABABA] bg-[#BABABA] text-slate-50"
+                  : "border-coklat500 bg-white "
+              }`}
             >
               <option value={true}>Saya bisa hadir</option>
               <option value={false}>Saya tidak bisa hadir</option>
@@ -514,9 +552,13 @@ export const MainBottomSection = ({
             onClick={() => {
               setRsvp();
             }}
-            className={`flex w-full cursor-pointer items-center justify-center gap-[4px]  rounded-[4px]  px-[12px] py-[4px] ${ isDisableRSVC ? 'bg-[#BABABA] ':'bg-coklat600'} `}
+            className={`flex w-full cursor-pointer items-center justify-center gap-[4px]  rounded-[4px]  px-[12px] py-[4px] ${
+              isDisableRSVC ? "bg-[#BABABA] " : "bg-coklat600"
+            } `}
           >
-            <CheckCircle className="text-white" />
+            <CheckCircle className={`${
+              isDisableRSVC ? "text-green-700 " : "text-white"
+            } `} />
             <p className="select-none px-2 font-[alice] text-body3 font-medium text-white">
               {" "}
               Konfirmasi
@@ -535,7 +577,7 @@ export const MainBottomSection = ({
           className="relative ml-auto mr-auto flex items-center justify-center overflow-hidden pb-0 pt-6 text-center"
         >
           <img src={cloud3} className="absolute -right-16 -top-1"></img>
-          <p className="font-[tanPearl] text-header3 font-medium text-coklat700">
+          <p className="font-[tanPearl] text-header2 font-medium text-coklat700">
             Sampai Berjumpa di Hari Pernikahan
           </p>
           <img
