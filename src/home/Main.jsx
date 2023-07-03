@@ -81,7 +81,7 @@ export const Main = ({
 
   return (
     <div
-      className="h-full w-full overflow-auto bg-coklat700 bg-white"
+      className="h-full w-full overflow-auto bg-white"
       onScroll={scrollEvent}
     >
       <MusicSideBar isMute={isMute} onClick={handleMusic} />
