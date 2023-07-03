@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import decoration3 from "./../assets/img/decoration3.svg";
 import leaf2 from "./../assets/img/leaf2.svg";
+import leaf3 from "./../assets/img/leaf3.svg";
 import { ReactComponent as Download } from "./../assets/img/download.svg";
 import { ReactComponent as CheckCircle } from "./../assets/img/checkCircle.svg";
 import { ReactComponent as Send } from "./../assets/img/send.svg";
@@ -202,6 +203,8 @@ export const MainBottomSection = ({
   const getComments = async () => {
     const params = {
       limit: 10,
+      page
+
     };
     const response = await comments(dataInvitation.user.id, params);
     const dataRes = response?.data?.items || [];
@@ -251,7 +254,7 @@ export const MainBottomSection = ({
     }
   };
   const onChangeNumber = (type = "+") => {
-    if (isAttending == "true" && isAttending) {
+    if (isAttending == "true" && isAttending && !isDisableRSVC) {
       if (type === "+") {
         return setCPeople(cPeople + 1);
       }
@@ -391,10 +394,10 @@ export const MainBottomSection = ({
           </p>
         </div>
         <img
-          src={leaf2}
-          className="absolute -bottom-24 left-0 -scale-x-100"
+          src={leaf3}
+          className="absolute -bottom-24 left-0 lifeLeft"
         ></img>
-        <img src={leaf2} className="absolute -bottom-24 right-0"></img>
+        <img src={leaf2} className="absolute -bottom-24 right-0 lifeRight"></img>
       </div>
     );
   };
@@ -664,13 +667,13 @@ export const MainBottomSection = ({
           style={{ height: "170px" }}
           className="relative ml-auto mr-auto flex items-center justify-center overflow-hidden pb-0 pt-6 text-center"
         >
-          <img src={cloud3} className="absolute -right-16 -top-1"></img>
+          <img src={cloud3} className="cloud2 absolute -right-16 -top-1"></img>
           <p className="font-[tanPearl] text-header2 font-medium text-coklat700">
             Sampai Berjumpa di Hari Pernikahan
           </p>
           <img
             src={cloud3}
-            className="absolute -left-20 bottom-2 -scale-x-100"
+            className="absolute cloud -left-20 bottom-2 -scale-x-100"
           ></img>
         </div>
         <img src={streetMrt2} className="w-full object-fill"></img>

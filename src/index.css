@@ -46,23 +46,43 @@ body {
 }
 
 @keyframes float2 {
-    0% {
-      transform: translatey(0px);
-    }
+  0% {
+    transform: translatey(0px);
+  }
+  50% {
+    transform: translatey(10px);
+  }
+  100% {
+    transform: translatey(0px);
+  }
+}
+
+@keyframes mymove {
+  50% {
+    transform: rotate(3deg);
+  }
+}
+
+@keyframes mymove2 {
     50% {
-      transform: translatey(10px);
-    }
-    100% {
-      transform: translatey(0px);
+      transform: rotate(-3deg);
     }
   }
 
+.lifeRight {
+    animation: mymove 5s infinite;
+}
+
+.lifeLeft {
+    animation: mymove2 5s infinite;
+
+}
 .cloud {
   transform: translatey(0px);
   animation: float 6s ease-in-out infinite;
 }
 
 .cloud2 {
-    transform: translatey(0px);
-    animation: float2 6s ease-in-out infinite;
-  }
+  transform: translatey(0px);
+  animation: float2 6s ease-in-out infinite;
+}
