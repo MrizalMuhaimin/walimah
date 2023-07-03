@@ -54,10 +54,12 @@ export const MainBottomSection = ({
   const getMyQR = async () => {
     try {
       const response = await unduhQr(dataInvitation.user.id);
-      const url = window.URL.createObjectURL(new Blob([response.data], { type: 'image/png' }));
-      const link = document.createElement('a');
+      const url = window.URL.createObjectURL(
+        new Blob([response.data], { type: "image/png" })
+      );
+      const link = document.createElement("a");
       link.href = url;
-      link.setAttribute('download', `qr_${dataInvitation.user.name}.png`);
+      link.setAttribute("download", `qr_${dataInvitation.user.name}.png`);
       document.body.appendChild(link);
       link.click();
       link.remove();
@@ -450,11 +452,8 @@ export const MainBottomSection = ({
   const greetingCard = () => {
     return (
       <div className="w-full" ref={refSpeech}>
-        <img
-          src={decoration3}
-          className="ml-auto mr-auto -scale-100 py-6"
-        ></img>
-        <div className="relative px-6 pb-3 pt-14 text-center">
+        <img src={decoration3} className="ml-auto mr-auto w-[233px] pt-6"></img>
+        <div className="relative px-6 pb-3 text-center">
           <p className="pt-9 font-[tanPearl] text-header1  font-medium text-steel700 ">
             Ucapan
           </p>

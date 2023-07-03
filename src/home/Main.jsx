@@ -26,14 +26,9 @@ export const Main = ({
     setHeightCalendarSection(
       refCalendarSection.current.getBoundingClientRect().top
     );
-    setHeightQRSection(
-      refQRSection.current.getBoundingClientRect().top +
-        refQRSection.current.offsetTop
-    );
+    setHeightQRSection(refQRSection.current.getBoundingClientRect().top + 1000);
     setHeightSpeechSection(
-      refSpeechSection.current.getBoundingClientRect().top +
-        55 +
-        refQRSection.current.offsetTop
+      refSpeechSection.current.getBoundingClientRect().top + 1000
     );
   }, [
     refCalendarSection.current,

@@ -2,9 +2,12 @@ import { ReactComponent as CalendarLogo } from "../assets/img/calendar.svg";
 import { ReactComponent as SendLogo } from "../assets/img/send.svg";
 import { ReactComponent as QRLogo } from "../assets/img/qr.svg";
 
-export const BottomBar = ({ section, onClickTab }) => {
+export const BottomBar = ({ section, onClickTab, width }) => {
   return (
-    <div className="w-inherit sticky bottom-0 z-50 flex h-11 justify-center bg-white shadow-[0px_-4px_24px_0px_rgba(0,0,0,0.15)]">
+    <div
+      className="sticky bottom-0 z-50 flex h-11 w-full justify-center bg-white shadow-[0px_-4px_24px_0px_rgba(0,0,0,0.15)]"
+      style={{ width: `${width}px` }}
+    >
       <div className="flex w-full justify-between">
         <div
           className={`flex w-4/12 items-center justify-center ${
