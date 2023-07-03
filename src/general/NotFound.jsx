@@ -12,8 +12,7 @@ export const NotFound = () => {
       >
         <p className="absolute w-full p-14 text-body3 font-thin">
           Undangan ini memerlukan kode unik untuk dibuka. Pastikan anda memiliki
-          kode unik. Jika anda tidak punya, barangkali memang karena
-          anda tidak diundang
+          kode unik.
         </p>
         <img src={card}></img>
       </div>
