@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { toast } from "react-toastify";
+
 import tent1 from "./../assets/img/tent1.svg";
 import quiz from "./../assets/img/quiz.webp";
 
@@ -24,6 +26,17 @@ export const Quiz = ({ setStatePage = () => {} }) => {
     setIndexSelected(index);
     if (listAnswer[index].status) {
       setStatePage("mainPage");
+    } else {
+      toast.error("Maaf jawaban salah!!.", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     }
   };
 

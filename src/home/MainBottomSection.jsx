@@ -46,9 +46,9 @@ export const MainBottomSection = ({
 
   const setVidioReminder = async () => {
     try {
-      const response = await videoReminder(dataInvitation.user.id);
+      await videoReminder(dataInvitation.user.id);
       setIsUpdateDataUser(!isUpdateDataUser);
-      toast.success(response.data.message, {
+      toast.success('Pengingat telah dikirim ke nomor WhatsApp.', {
         position: "top-right",
         autoClose: 4000,
         hideProgressBar: false,
@@ -75,7 +75,7 @@ export const MainBottomSection = ({
       document.body.appendChild(link);
       link.click();
       link.remove();
-      toast.success("QR Berhasil diunduh", {
+      toast.success("QR berhasil diunduh.", {
         position: "top-right",
         autoClose: 4000,
         hideProgressBar: false,
@@ -100,7 +100,7 @@ export const MainBottomSection = ({
       if (response?.data?.message === "success") {
         setDataMyComment(response?.data?.comment);
         setIdMyComment(response?.data?.comment_id);
-        toast.success("Komentar Berhasil Dibuat ", {
+        toast.success("Komentar berhasil dibuat.", {
           position: "top-right",
           autoClose: 4000,
           hideProgressBar: false,
@@ -128,7 +128,7 @@ export const MainBottomSection = ({
       if (response?.data?.message === "success") {
         setIsUpdateDataUser(!isUpdateDataUser);
         console.log("response");
-        toast.success("Konfirmasi berhasil dilakukan", {
+        toast.success("Konfirmasi kehadiran berhasil.", {
           position: "top-right",
           autoClose: 4000,
           hideProgressBar: false,
@@ -156,7 +156,7 @@ export const MainBottomSection = ({
         setDataMyComment(response?.data?.comment);
         setIdMyComment(response?.data?.comment_id);
         setIsUpdateGetComment(!isUpdateGetComment);
-        toast.success("Komentar yang Diperbarui Berhasil", {
+        toast.success("Komentar berhasil diperbarui.", {
           position: "top-right",
           autoClose: 4000,
           hideProgressBar: false,

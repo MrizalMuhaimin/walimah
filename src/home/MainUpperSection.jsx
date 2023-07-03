@@ -30,14 +30,14 @@ export const MainUpperSection = ({
 
   const getDateReminder = async () => {
     try {
-      const response = await dateReminder(dataInvitation.user.id);
+      await dateReminder(dataInvitation.user.id);
       if (dataInvitation?.invitation?.type == "SINGLE") {
         updateDataInvitation();
       } else {
         updateDataInvitationByNumber(dataInvitation.user.wa_number);
       }
 
-      toast.success(response.data.message, {
+      toast.success('Pengingat telah dikirim ke nomor WhatsApp.', {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
