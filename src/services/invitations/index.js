@@ -7,9 +7,9 @@ export function getInvitation (params) {
     });
 }
 
-export function cekInvitation (path) {
+export function cekInvitation (id,path) {
   return makeCallApi({
     method: 'GET',
-    url: `/invitations/group/${path}`,
+    url: `/invitations/${id}/group/${path}`,
   });
 }

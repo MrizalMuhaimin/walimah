@@ -34,10 +34,13 @@ export const MainUpperSection = ({
       if (dataInvitation?.invitation?.type == "SINGLE") {
         updateDataInvitation();
       } else {
-        updateDataInvitationByNumber(dataInvitation.user.wa_number);
+        updateDataInvitationByNumber(
+          dataInvitation?.invitation?.id,
+          dataInvitation.user.wa_number
+        );
       }
 
-      toast.success('Pengingat telah dikirim ke nomor WhatsApp.', {
+      toast.success("Pengingat telah dikirim ke nomor WhatsApp.", {
         position: "top-center",
         autoClose: 5000,
         hideProgressBar: false,
@@ -69,8 +72,11 @@ export const MainUpperSection = ({
         }}
         ref={refCalendar}
       >
-        <img src={leftLeaf} className="absolute left-0 top-0 lifeLeft" />
-        <img src={rightLeaf} className="absolute right-0 top-[150px] lifeLeft" />
+        <img src={leftLeaf} className="lifeLeft absolute left-0 top-0" />
+        <img
+          src={rightLeaf}
+          className="lifeLeft absolute right-0 top-[150px]"
+        />
         <div className="flex flex-col items-center justify-center">
           <div className="w-36">
             <p className="text-center font-[tanPearl] text-header2  font-normal text-coklat700">
@@ -208,8 +214,11 @@ export const MainUpperSection = ({
           } 140 ${width * 0.9} 0 H ${width} V 340 H 0 Z')`,
         }}
       >
-        <img src={leftLeaf2} className="absolute left-0 top-0 lifeRight" />
-        <img src={rightLeaf2} className="absolute right-0 top-[150px] lifeLeft" />
+        <img src={leftLeaf2} className="lifeRight absolute left-0 top-0" />
+        <img
+          src={rightLeaf2}
+          className="lifeLeft absolute right-0 top-[150px]"
+        />
         <div className="z-40 flex w-10/12 flex-col items-center justify-center gap-[10px]">
           <button
             className={`w-full rounded-[4px]  px-[12px] py-[4px] ${

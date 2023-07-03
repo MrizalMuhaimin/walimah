@@ -206,7 +206,7 @@ export const MainBottomSection = ({
 
   const getComments = async () => {
     const params = {
-      limit: 10,
+      limit: 5,
       page,
     };
     const response = await comments(dataInvitation.user.id, params);
@@ -228,13 +228,16 @@ export const MainBottomSection = ({
 
   useEffect(() => {
     getComments();
-  }, [isUpdateGetComment]);
+  }, [isUpdateGetComment, page]);
 
   useEffect(() => {
     if (dataInvitation?.invitation?.type == "SINGLE") {
       updateDataInvitation();
     } else {
-      updateDataInvitationByNumber(dataInvitation.user.wa_number);
+      updateDataInvitationByNumber(
+        dataInvitation?.invitation?.id,
+        dataInvitation.user.wa_number
+      );
     }
   }, [isUpdateDataUser]);
 

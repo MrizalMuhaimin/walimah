@@ -49,12 +49,15 @@ export const OnBoarding = ({
   };
 
   const getUserByNumber = async () => {
-    const response = await cekInvitation(number);
+    const response = await cekInvitation(
+      dataInvitation?.invitation?.id,
+      number
+    );
     const dataRes = response?.data || {};
     if (dataRes?.message == "success") {
       console.log(dataRes.message);
-      updateDataInvitationByNumber(number);
-      toast.success('Nomor WhatsApp berhasil disimpan.', {
+      updateDataInvitationByNumber(dataInvitation?.invitation?.id, number);
+      toast.success("Nomor WhatsApp berhasil disimpan.", {
         position: "top-center",
         autoClose: 3000,
         hideProgressBar: false,
@@ -81,20 +84,23 @@ export const OnBoarding = ({
       if (dataInvitation?.invitation?.type == "SINGLE") {
         getDataInvitation();
       } else {
-        updateDataInvitationByNumber(number);
+        updateDataInvitationByNumber(dataInvitation?.invitation?.id, number);
       }
       setIsNumber(false);
       setIsName(true);
-      toast.success('Nomor WhatsApp berhasil disimpan. Silahkan masukkan nama.', {
-        position: "top-center",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
+      toast.success(
+        "Nomor WhatsApp berhasil disimpan. Silahkan masukkan nama.",
+        {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        }
+      );
     } else {
       console.log(dataRes.message);
       setWarning(dataRes?.message);
@@ -114,7 +120,7 @@ export const OnBoarding = ({
         if (dataInvitation?.invitation?.type == "SINGLE") {
           getDataInvitation();
         } else {
-          updateDataInvitationByNumber(number);
+          updateDataInvitationByNumber(dataInvitation?.invitation?.id, number);
         }
         setIsCard(true);
       } else {
@@ -155,7 +161,6 @@ export const OnBoarding = ({
     }
   };
 
-
   useEffect(() => {
     if (
       dataInvitation?.user?.status === "INFO_COMPLETED" &&
@@ -173,7 +178,7 @@ export const OnBoarding = ({
     ) {
       setIsName(true);
       setIsNumber(false);
-      setNumber(dataInvitation?.user?.wa_number)
+      setNumber(dataInvitation?.user?.wa_number);
     }
 
     if (

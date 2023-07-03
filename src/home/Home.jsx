@@ -48,9 +48,9 @@ export const Home = () => {
     }
   };
 
-  const updateDataInvitationByNumber = async (number) => {
+  const updateDataInvitationByNumber = async (id,number) => {
     try {
-      const response = await cekInvitation(number);
+      const response = await cekInvitation(id,number);
       const data = response?.data || {};
       setDataInvitation(data);
     } catch (error) {
