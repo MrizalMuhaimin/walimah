@@ -77,16 +77,19 @@ export const MainBottomSection = ({
       document.body.appendChild(link);
       link.click();
       link.remove();
-      toast.success("QR berhasil diunduh.", {
-        position: "top-center",
-        autoClose: 4000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
+      toast.success(
+        `Tiket reservasi pernikahan Afra & Akram untuk ${dataInvitation.user.name}`,
+        {
+          position: "top-center",
+          autoClose: 4000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        }
+      );
     } catch (error) {
       console.log("error");
     }
