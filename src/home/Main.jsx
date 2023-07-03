@@ -88,7 +88,7 @@ export const Main = ({
       <div>
         <ToastContainer
           style={{
-            right: `${windowWidth > 480 ? windowWidth - 480 : 0}px`,
+            right: `${windowWidth > 480 ? (windowWidth - 480) / 2 : 0}px`,
             width: "320px",
           }}
         />
