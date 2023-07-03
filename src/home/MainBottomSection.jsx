@@ -49,7 +49,7 @@ export const MainBottomSection = ({
       await videoReminder(dataInvitation.user.id);
       setIsUpdateDataUser(!isUpdateDataUser);
       toast.success('Pengingat telah dikirim ke nomor WhatsApp.', {
-        position: "top-right",
+        position: "top-center",
         autoClose: 4000,
         hideProgressBar: false,
         closeOnClick: true,
@@ -76,7 +76,7 @@ export const MainBottomSection = ({
       link.click();
       link.remove();
       toast.success("QR berhasil diunduh.", {
-        position: "top-right",
+        position: "top-center",
         autoClose: 4000,
         hideProgressBar: false,
         closeOnClick: true,
@@ -101,7 +101,7 @@ export const MainBottomSection = ({
         setDataMyComment(response?.data?.comment);
         setIdMyComment(response?.data?.comment_id);
         toast.success("Komentar berhasil dibuat.", {
-          position: "top-right",
+          position: "top-center",
           autoClose: 4000,
           hideProgressBar: false,
           closeOnClick: true,
@@ -129,7 +129,7 @@ export const MainBottomSection = ({
         setIsUpdateDataUser(!isUpdateDataUser);
         console.log("response");
         toast.success("Konfirmasi kehadiran berhasil.", {
-          position: "top-right",
+          position: "top-center",
           autoClose: 4000,
           hideProgressBar: false,
           closeOnClick: true,
@@ -157,7 +157,7 @@ export const MainBottomSection = ({
         setIdMyComment(response?.data?.comment_id);
         setIsUpdateGetComment(!isUpdateGetComment);
         toast.success("Komentar berhasil diperbarui.", {
-          position: "top-right",
+          position: "top-center",
           autoClose: 4000,
           hideProgressBar: false,
           closeOnClick: true,

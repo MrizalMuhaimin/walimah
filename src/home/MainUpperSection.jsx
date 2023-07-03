@@ -38,7 +38,7 @@ export const MainUpperSection = ({
       }
 
       toast.success('Pengingat telah dikirim ke nomor WhatsApp.', {
-        position: "top-right",
+        position: "top-center",
         autoClose: 5000,
         hideProgressBar: false,
         closeOnClick: true,

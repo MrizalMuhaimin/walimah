@@ -28,7 +28,7 @@ export const Quiz = ({ setStatePage = () => {} }) => {
       setStatePage("mainPage");
     } else {
       toast.error("Maaf jawaban salah!!.", {
-        position: "top-right",
+        position: "top-center",
         autoClose: 2000,
         hideProgressBar: false,
         closeOnClick: true,

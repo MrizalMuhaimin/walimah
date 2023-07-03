@@ -55,7 +55,7 @@ export const OnBoarding = ({
       console.log(dataRes.message);
       updateDataInvitationByNumber(number);
       toast.success('Nomor WhatsApp berhasil disimpan.', {
-        position: "top-right",
+        position: "top-center",
         autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
@@ -86,7 +86,7 @@ export const OnBoarding = ({
       setIsNumber(false);
       setIsName(true);
       toast.success('Nomor WhatsApp berhasil disimpan. Silahkan masukkan nama.', {
-        position: "top-right",
+        position: "top-center",
         autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
