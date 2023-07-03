@@ -2,28 +2,67 @@
 @tailwind components;
 @tailwind utilities;
 
-
 body {
-    margin: 0px;
-    padding: 0px;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    font-family: Alice;
-}
-
-
-@font-face {
-    font-family: 'Alice';
-    src: url('./assets/fonts/Alice-Regular.ttf');
+  margin: 0px;
+  padding: 0px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: Alice;
 }
 
 @font-face {
-    font-family: 'TanPearl';
-    src: url('./assets/fonts/TAN-PEARL.ttf');
+  font-family: "Alice";
+  src: url("./assets/fonts/Alice-Regular.ttf");
+}
+
+@font-face {
+  font-family: "TanPearl";
+  src: url("./assets/fonts/TAN-PEARL.ttf");
 }
 
 .trans {
-    transition: all;
-    transition-duration: 500ms;
-    transition-timing-function: ease;
+  transition: all;
+  transition-duration: 500ms;
+  transition-timing-function: ease;
 }
+
+.life {
+  animation: up 1.2s linear;
+  @keyframes up {
+    transform: translateX(30px);
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translatey(0px);
+  }
+  50% {
+    transform: translatey(-10px);
+  }
+  100% {
+    transform: translatey(0px);
+  }
+}
+
+@keyframes float2 {
+    0% {
+      transform: translatey(0px);
+    }
+    50% {
+      transform: translatey(10px);
+    }
+    100% {
+      transform: translatey(0px);
+    }
+  }
+
+.cloud {
+  transform: translatey(0px);
+  animation: float 6s ease-in-out infinite;
+}
+
+.cloud2 {
+    transform: translatey(0px);
+    animation: float2 6s ease-in-out infinite;
+  }
