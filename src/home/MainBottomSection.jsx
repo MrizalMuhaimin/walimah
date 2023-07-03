@@ -102,7 +102,7 @@ export const MainBottomSection = ({
       if (response?.data?.message === "success") {
         setDataMyComment(response?.data?.comment);
         setIdMyComment(response?.data?.comment_id);
-        toast.success("Komentar berhasil dibuat.", {
+        toast.success("Ucapan berhasil dibuat.", {
           position: "top-center",
           autoClose: 4000,
           hideProgressBar: false,
@@ -160,7 +160,7 @@ export const MainBottomSection = ({
         setDataMyComment(response?.data?.comment);
         setIdMyComment(response?.data?.comment_id);
         setIsUpdateGetComment(!isUpdateGetComment);
-        toast.success("Komentar berhasil diperbarui.", {
+        toast.success("Ucapan berhasil diperbarui.", {
           position: "top-center",
           autoClose: 4000,
           hideProgressBar: false,
@@ -395,7 +395,7 @@ export const MainBottomSection = ({
           Kehadiran
         </p>
         <div className="ml-auto mr-auto w-60 pt-6 text-center">
-          <p className="font-[alice] text-body4 font-medium text-steel700">
+          <p className="font-[alice] text-body2 font-medium text-steel700">
             Harap simpan Kode QR reservasi berikut
           </p>
         </div>
@@ -414,18 +414,34 @@ export const MainBottomSection = ({
         <div className="relative px-6 pb-3 pt-6 text-center">
           <img src={decoration3} className="ml-auto mr-auto"></img>
           <p className="pt-9 font-[tanPearl] text-header1  font-medium text-steel700 ">
-            Video
+            Karangan Bunga
+          </p>
+          <p className=" font-[tanPearl] text-header1  font-medium text-steel700 ">
+            &
+          </p>
+          <p className="pb-9 font-[tanPearl] text-header1  font-medium text-steel700 ">
+            Ucapan
           </p>
           <div className="ml-auto mr-auto w-full text-center">
             <p className="font-[alice] text-body4 font-medium text-steel700">
-              Kami tidak tidak berkenan menerima karangan bunga sebagai ucapan.
-              Namun, <b>kami sangat menantikan ucapan berupa video</b> yang akan
-              ditampilkan pada hari pernikahan
+              Kami tidak berkenan menerima karangan bunga secara fisik. Namun,{" "}
+              <b>kami sangat menantikan ucapan berupa foto atau video</b> yang
+              akan ditampilkan pada hari pernikajan
             </p>
           </div>
         </div>
         <div className="bg-coklat800 px-6 py-6 font-[alice] text-body4 font-medium text-white">
-          <p>Ketentuan Vidio:</p>
+          <p>Ketentuan Foto:</p>
+          <ul className="list-disc px-3 pb-4">
+            <li>
+              Foto dapat berupa poster, ucapan selamat, ataupun jenis foto yang
+              lain
+            </li>
+            <li>Format foto dalam .png, .jpg, atau .pdf</li>
+            <li>Foto dibuat dalam layout landscape</li>
+            <li>Ukuran dimensi foto dibebaskan</li>
+          </ul>
+          <p>Ketentuan Video:</p>
           <ul className="list-disc px-3 pb-4">
             <li>
               Video dapat berupa film pendek, vlog, video musik, parodi, ataupun
@@ -435,6 +451,7 @@ export const MainBottomSection = ({
             <li>Video dibuat dalam layout landscape</li>
             <li>Durasi maksimal 1 menit</li>
           </ul>
+
           <div
             onClick={() => {
               setVidioReminder();
@@ -454,7 +471,7 @@ export const MainBottomSection = ({
             />
             <p className="select-none px-2 font-[alice] text-body3 font-medium text-white drop-shadow">
               {" "}
-              Ingatkan saya untuk kirim video
+              Saya tertarik untuk kirim foto/video
             </p>
           </div>
         </div>
@@ -596,7 +613,7 @@ export const MainBottomSection = ({
             </p>
           </div>
           <div className="my-5 flex-grow border-t-2 border-dashed border-steel500"></div>
-          <div className="flex justify-between pb-4">
+          <div className="flex flex-col justify-between pb-4">
             <select
               disabled={isDisableRSVC}
               onChange={(e) => onChangeAtt(e)}
@@ -610,11 +627,11 @@ export const MainBottomSection = ({
               <option value={true}>Saya bisa hadir</option>
               <option value={false}>Saya tidak bisa hadir</option>
             </select>
-            <div className="flex w-48 items-center justify-evenly">
+            <div className="flex items-center justify-evenly py-3">
               <div className="text-body4">Jumlah Orang :</div>
               <div
                 onClick={() => onChangeNumber("-")}
-                className={`relative h-5 w-5 cursor-pointer rounded-full ${
+                className={`relative ml-auto h-5 w-5 cursor-pointer rounded-full ${
                   cPeople === 0 || isDisableRSVC
                     ? "bg-[#BABABA]"
                     : "bg-coklat500"
@@ -627,7 +644,7 @@ export const MainBottomSection = ({
                   -
                 </span>
               </div>
-              <p className="w-6">{cPeople}</p>
+              <p className="w-12">{cPeople}</p>
               <div
                 onClick={() => onChangeNumber("+")}
                 className={`relative h-5 w-5 cursor-pointer rounded-full ${
@@ -675,7 +692,7 @@ export const MainBottomSection = ({
         >
           <img src={cloud3} className="cloud2 absolute -right-16 -top-1"></img>
           <p className="font-[tanPearl] text-header2 font-medium text-coklat700">
-            Sampai Berjumpa di Hari Pernikahan
+            Sampai Berjumpa di Hari Pernikahan!
           </p>
           <img
             src={cloud3}
