@@ -1,8 +1,11 @@
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { useState, useRef, useEffect } from "react";
 import { MainBottomSection } from "./MainBottomSection";
 import { MainUpperSection } from "./MainUpperSection";
 import { BottomBar } from "../components/BottomBar";
 import { MusicSideBar } from "../components/MusicSideBar";
+// import useWindowDimensions from "../helpers/hooks/useWindowDimensions";
 
 export const Main = ({
   dataInvitation = {},
@@ -21,6 +24,8 @@ export const Main = ({
   const [activeSection, setActiveSection] = useState("CALENDAR");
 
   const [isMute, setIsMute] = useState(false);
+
+  // const { width: windowWidth, height: windowHeight } = useWindowDimensions();
 
   useEffect(() => {
     setHeightCalendarSection(
@@ -73,9 +78,12 @@ export const Main = ({
 
   return (
     <div
-      className="h-full w-full overflow-auto bg-white"
+      className="h-full w-full overflow-auto bg-coklat700 bg-white"
       onScroll={scrollEvent}
     >
+      <div>
+        <ToastContainer style={{ right: "500px", width: "320px" }} />
+      </div>
       <MusicSideBar isMute={isMute} onClick={handleMusic} />
       <MainUpperSection
         dataInvitation={dataInvitation}
