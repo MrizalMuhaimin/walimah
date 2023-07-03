@@ -1,4 +1,3 @@
-import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useState, useRef, useEffect } from "react";
 import { MainBottomSection } from "./MainBottomSection";
@@ -85,14 +84,6 @@ export const Main = ({
       className="h-full w-full overflow-auto bg-coklat700 bg-white"
       onScroll={scrollEvent}
     >
-      <div>
-        <ToastContainer
-          style={{
-            right: `${windowWidth > 480 ? (windowWidth - 480) / 2 : 0}px`,
-            width: "320px",
-          }}
-        />
-      </div>
       <MusicSideBar isMute={isMute} onClick={handleMusic} />
       <MainUpperSection
         dataInvitation={dataInvitation}

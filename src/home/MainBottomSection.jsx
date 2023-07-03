@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { toast } from "react-toastify";
 import decoration3 from "./../assets/img/decoration3.svg";
 import leaf2 from "./../assets/img/leaf2.svg";
 import { ReactComponent as Download } from "./../assets/img/download.svg";
@@ -44,8 +45,18 @@ export const MainBottomSection = ({
 
   const setVidioReminder = async () => {
     try {
-      await videoReminder(dataInvitation.user.id);
+      const response = await videoReminder(dataInvitation.user.id);
       setIsUpdateDataUser(!isUpdateDataUser);
+      toast.success(response.data.message, {
+        position: "top-right",
+        autoClose: 4000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     } catch (error) {
       console.log("error");
     }
@@ -63,6 +74,16 @@ export const MainBottomSection = ({
       document.body.appendChild(link);
       link.click();
       link.remove();
+      toast.success("QR Berhasil diunduh", {
+        position: "top-right",
+        autoClose: 4000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     } catch (error) {
       console.log("error");
     }
@@ -78,6 +99,16 @@ export const MainBottomSection = ({
       if (response?.data?.message === "success") {
         setDataMyComment(response?.data?.comment);
         setIdMyComment(response?.data?.comment_id);
+        toast.success("Komentar Berhasil Dibuat ", {
+          position: "top-right",
+          autoClose: 4000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
       }
     } catch (error) {
       setDataMyComment("");
@@ -96,6 +127,16 @@ export const MainBottomSection = ({
       if (response?.data?.message === "success") {
         setIsUpdateDataUser(!isUpdateDataUser);
         console.log("response");
+        toast.success("Konfirmasi berhasil dilakukan", {
+          position: "top-right",
+          autoClose: 4000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
       }
     } catch (error) {
       setDataMyComment("");
@@ -114,6 +155,16 @@ export const MainBottomSection = ({
         setDataMyComment(response?.data?.comment);
         setIdMyComment(response?.data?.comment_id);
         setIsUpdateGetComment(!isUpdateGetComment);
+        toast.success("Komentar yang Diperbarui Berhasil", {
+          position: "top-right",
+          autoClose: 4000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
       }
     } catch (error) {
       setDataMyComment("");

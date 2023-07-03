@@ -218,6 +218,7 @@ export const MainUpperSection = ({
                 : "bg-coklat500"
             }`}
             onClick={getDateReminder}
+            disabled={dataInvitation?.user?.is_date_reminder_sent != 1}
           >
             <div className="flex items-center justify-center gap-[4px]">
               <BellLogo
