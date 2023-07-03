@@ -149,6 +149,8 @@ export const MainBottomSection = ({
   const getComments = async () => {
     const params = {
       limit: 10,
+      page
+
     };
     const response = await comments(dataInvitation.user.id, params);
     const dataRes = response?.data?.items || [];
