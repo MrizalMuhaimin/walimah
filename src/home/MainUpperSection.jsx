@@ -81,9 +81,6 @@ export const MainUpperSection = ({
           <div className="w-36">
             <p className="text-center font-[tanPearl] text-header2  font-normal text-coklat700">
               Selamat ya,{" "}
-              {dataInvitation?.invitation?.type === "GROUP"
-                ? `${dataInvitation?.invitation?.name} - `
-                : ""}{" "}
               {dataInvitation?.user?.name + "!"}
             </p>
           </div>
