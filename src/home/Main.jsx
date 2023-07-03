@@ -5,7 +5,7 @@ import { MainBottomSection } from "./MainBottomSection";
 import { MainUpperSection } from "./MainUpperSection";
 import { BottomBar } from "../components/BottomBar";
 import { MusicSideBar } from "../components/MusicSideBar";
-// import useWindowDimensions from "../helpers/hooks/useWindowDimensions";
+import useWindowDimensions from "../helpers/hooks/useWindowDimensions";
 
 export const Main = ({
   dataInvitation = {},
@@ -25,7 +25,7 @@ export const Main = ({
 
   const [isMute, setIsMute] = useState(false);
 
-  // const { width: windowWidth, height: windowHeight } = useWindowDimensions();
+  const { width: windowWidth } = useWindowDimensions();
 
   useEffect(() => {
     setHeightCalendarSection(
@@ -76,13 +76,22 @@ export const Main = ({
     }
   };
 
+  useEffect(() => {
+    console.log(windowWidth > 480 ? windowWidth - 480 : 0);
+  }, [windowWidth]);
+
   return (
     <div
       className="h-full w-full overflow-auto bg-coklat700 bg-white"
       onScroll={scrollEvent}
     >
       <div>
-        <ToastContainer style={{ right: "500px", width: "320px" }} />
+        <ToastContainer
+          style={{
+            right: `${windowWidth > 480 ? windowWidth - 480 : 0}px`,
+            width: "320px",
+          }}
+        />
       </div>
       <MusicSideBar isMute={isMute} onClick={handleMusic} />
       <MainUpperSection
