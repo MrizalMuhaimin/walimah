@@ -351,13 +351,14 @@ export const OnBoarding = ({
           isCard ? "-bottom-20 -translate-y-80" : "-bottom-20"
         }`}
       >
-      <div className="w-full absolute flex h-full items-center">
-      <p className="absolute flex w-full items-center px-14  text-body3 font-thin">
-          {`"Rossi naek motor lama, itungannya kerja. Kita naek motor lama mah baru berangkat kerja, belom kerjanya :)"`}
-        </p>
+        <div className="absolute flex h-full w-full items-center">
+          <p className="absolute flex w-full items-center px-14  text-body3 font-thin">
+            &apos;&apos;Rossi naek motor lama, itungannya kerja. Kita naek motor
+            lama mah baru berangkat kerja, belom kerjanya :)&apos;&apos; <br />-
+            Bintang Emon
+          </p>
+        </div>
 
-      </div>
-        
         <img src={card}></img>
       </div>
     );
