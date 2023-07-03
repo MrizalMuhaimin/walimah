@@ -77,19 +77,16 @@ export const MainBottomSection = ({
       document.body.appendChild(link);
       link.click();
       link.remove();
-      toast.success(
-        `Tiket reservasi pernikahan Afra & Akram untuk ${dataInvitation.user.name}`,
-        {
-          position: "top-center",
-          autoClose: 4000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        }
-      );
+      toast.success(`Kode QR berhahsil diunduh`, {
+        position: "top-center",
+        autoClose: 4000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     } catch (error) {
       console.log("error");
     }
@@ -590,6 +587,11 @@ export const MainBottomSection = ({
       <div className="w-full">
         <div className="relative bg-white px-6 py-6 text-center">
           <div className="mb-6">
+            <p className="text-body3 pb-2">
+              {" "}
+              Tiket reservasi pernikahan Afra & Akram untuk{" "}
+              {dataInvitation.user.name}
+            </p>
             {dataInvitation?.user?.id && (
               <QRCode
                 fgColor="#6E513B"
