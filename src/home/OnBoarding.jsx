@@ -30,7 +30,36 @@ export const OnBoarding = ({
   const onChangeNumber = (e) => {
     const val = e.target.value;
     if (val.startsWith("+")) {
-      setNumber(val);
+      if (val.length == 1) {
+        setNumber(val);
+      } else if (val.length == 2) {
+        if (val.startsWith("+6")) {
+          setNumber(val);
+        } else {
+          setNumber(val.slice(0, val.length - 1));
+        }
+      } else if (val.length == 3) {
+        if (val.startsWith("+62")) {
+          setNumber(val);
+        } else {
+          setNumber(val.slice(0, val.length - 1));
+        }
+      } else if (val.length == 4) {
+        if (val.startsWith("+628")) {
+          setNumber(val);
+        } else {
+          setNumber(val.slice(0, val.length - 1));
+        }
+      } else {
+        const regexString = '^(\\+62)8[0-9][0-9]{0,11}$';
+        const regexp = new RegExp(regexString);
+        if (regexp.test(val)) {
+          setNumber(val);
+        } else {
+          setNumber(val.slice(0, val.length - 1));
+        }
+      }
+      
     } else {
       setNumber("");
     }
