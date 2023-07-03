@@ -1,4 +1,6 @@
 import { useState, useEffect, useRef } from "react";
+import { ToastContainer } from "react-toastify";
+
 import { useParams, useNavigate } from "react-router-dom";
 import { OnBoarding } from "./OnBoarding.jsx";
 import { Quiz } from "../home/Quiz.jsx";
@@ -93,6 +95,15 @@ export const Home = () => {
 
   return (
     <div className="h-screen overflow-hidden bg-white" ref={refContainer}>
+      <div>
+        <ToastContainer
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            flexDirection: "column",
+          }}
+        />
+      </div>
       {renderContent()}
     </div>
   );

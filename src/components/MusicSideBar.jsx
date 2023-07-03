@@ -8,14 +8,14 @@ export const MusicSideBar = ({ isMute, onClick }) => {
       className="w-inherit absolute top-6 z-50 flex h-11 w-11 select-none items-center justify-center rounded-r-lg bg-coklat600 shadow-[0px_0px_12px_0px_rgba(0,0,0,0.25)]"
       onClick={onClick}
     >
-      <ReactAudioPlayer
+      {isMute && <ReactAudioPlayer
         className='hidden'
         src="https://api.kramili.site/static/Baraka_Allahu_Lakuma.mp3"
         autoPlay
         loop
         muted={isMute}
-        volume={0.1}
-      />
+        volume={0.2}
+      />}
       {isMute ? (
         <SoundMuteLogo className="text-coklat100" />
       ) : (

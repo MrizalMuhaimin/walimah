@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import leftLeaf from "./../assets/img/leftLeaf.svg";
 import rightLeaf from "./../assets/img/rightLeaf.svg";
 import leftLeaf2 from "./../assets/img/leftLeaf2.svg";
@@ -28,16 +29,24 @@ export const MainUpperSection = ({
   const [days, hours, minutes, seconds] = useCountdown("2023-07-23T01:00:00Z");
 
   const getDateReminder = async () => {
-
     try {
       await dateReminder(dataInvitation.user.id);
-      if(dataInvitation?.invitation?.type == "SINGLE"){
-        updateDataInvitation()
-
-      }else {
-        updateDataInvitationByNumber(dataInvitation.user.wa_number)
+      if (dataInvitation?.invitation?.type == "SINGLE") {
+        updateDataInvitation();
+      } else {
+        updateDataInvitationByNumber(dataInvitation.user.wa_number);
       }
-      
+
+      toast.success('Pengingat telah dikirim ke nomor WhatsApp.', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     } catch (error) {
       console.log(error);
     }
@@ -203,11 +212,22 @@ export const MainUpperSection = ({
         <img src={rightLeaf2} className="absolute right-0 top-[150px] lifeLeft" />
         <div className="z-40 flex w-10/12 flex-col items-center justify-center gap-[10px]">
           <button
-            className={`w-full rounded-[4px]  px-[12px] py-[4px] ${dataInvitation?.user?.is_date_reminder_sent != 1 ? 'bg-[#BABABA]': 'bg-coklat500'}`}
+            className={`w-full rounded-[4px]  px-[12px] py-[4px] ${
+              dataInvitation?.user?.is_date_reminder_sent != 1
+                ? "bg-[#BABABA]"
+                : "bg-coklat500"
+            }`}
             onClick={getDateReminder}
+            disabled={dataInvitation?.user?.is_date_reminder_sent != 1}
           >
             <div className="flex items-center justify-center gap-[4px]">
-              <BellLogo className={`${dataInvitation?.user?.is_date_reminder_sent != 1 ? 'text-green-700': 'text-white'}`} />
+              <BellLogo
+                className={`${
+                  dataInvitation?.user?.is_date_reminder_sent != 1
+                    ? "text-green-700"
+                    : "text-white"
+                }`}
+              />
               <p className="font-[alice] text-body4 text-coklat100">
                 Ingatkan Saya
               </p>

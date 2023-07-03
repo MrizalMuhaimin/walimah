@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { toast } from "react-toastify";
 import imgEnvelope from "./../assets/img/imgEnvelope.svg";
 import union from "./../assets/img/union.svg";
 import logoAA from "./../assets/img/logoAA.svg";
@@ -53,6 +54,16 @@ export const OnBoarding = ({
     if (dataRes?.message == "success") {
       console.log(dataRes.message);
       updateDataInvitationByNumber(number);
+      toast.success('Nomor WhatsApp berhasil disimpan.', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
       setIsNumber(false);
     } else {
       console.log(dataRes.message);
@@ -74,6 +85,16 @@ export const OnBoarding = ({
       }
       setIsNumber(false);
       setIsName(true);
+      toast.success('Nomor WhatsApp berhasil disimpan. Silahkan masukkan nama.', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     } else {
       console.log(dataRes.message);
       setWarning(dataRes?.message);
@@ -134,6 +155,7 @@ export const OnBoarding = ({
     }
   };
 
+
   useEffect(() => {
     if (
       dataInvitation?.user?.status === "INFO_COMPLETED" &&
@@ -151,6 +173,7 @@ export const OnBoarding = ({
     ) {
       setIsName(true);
       setIsNumber(false);
+      setNumber(dataInvitation?.user?.wa_number)
     }
 
     if (
