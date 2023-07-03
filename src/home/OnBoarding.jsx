@@ -316,9 +316,9 @@ export const OnBoarding = ({
         }`}
       >
         <p className="absolute w-full p-14 text-body3 font-thin">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In orci est,
-          ultrices sed tempor eu, sagittis id erat. In pretium accumsan
-          vehicula. Integer ac libero leo.
+          Tidak ada hal yang cuma-cuma di sirkel kami. Buktikan bahwa kamu
+          memang yang terpilih yang bisa menyelesaikan tantangan ini. Seberapa
+          tangguh kamu?
         </p>
         <img src={card}></img>
       </div>
