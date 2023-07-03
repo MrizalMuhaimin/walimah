@@ -46,12 +46,12 @@ export const Quiz = ({ setStatePage = () => {} }) => {
         <p className="font-[tanPearl] text-header1 font-medium text-steel700 ">
           Jawab ini dulu!
         </p>
-        <div className="ml-auto mr-auto w-72 text-center">
+        {/* <div className="ml-auto mr-auto w-72 text-center">
           <p className="font-[alice] text-body3 font-medium">
             Rossi naek motor lama itungannya kerja. Kita naek motor lama mah
             baru berangkat kerja. Belom kerjanya :
           </p>
-        </div>
+        </div> */}
       </div>
     );
   };
@@ -69,7 +69,7 @@ export const Quiz = ({ setStatePage = () => {} }) => {
           readOnly
           className="h-6 w-6 rounded-full accent-coklat500"
         />
-        <span className="ml-2 font-[alice] text-body5 font-medium ">
+        <span className="ml-2 font-[alice] text-body4 font-medium ">
           {text}
         </span>
       </div>
@@ -80,7 +80,7 @@ export const Quiz = ({ setStatePage = () => {} }) => {
     return (
       <div className="px-6 pt-3 ">
         <div className="rounded-md bg-coklat100 p-3 drop-shadow">
-          <img src={quiz} style={{ width: "288px", height: "138px" }}></img>
+          <img src={quiz} style={{ width: "288px", height: "288px", objectFit:'cover' }}></img>
           <div className="ml-auto mr-auto w-72 pb-2 pt-2 text-center">
             <p className="font-[alice] text-body3 font-medium">
               Ada ayam jantan palanya ada di amerika ekornya di Afrika,

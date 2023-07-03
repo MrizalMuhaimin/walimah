@@ -237,7 +237,7 @@ export const MainUpperSection = ({
                     : "text-white"
                 }`}
               />
-              <p className="font-[alice] text-body4 text-coklat100">
+              <p className="font-[alice] text-body3 text-coklat100">
                 Ingatkan Saya
               </p>
             </div>

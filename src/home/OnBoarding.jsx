@@ -326,8 +326,8 @@ export const OnBoarding = ({
               onClick={() => setStatePage("quizPage")}
             >
               <CheckCircle className="text-white" />
-              <p className="px-1 font-[alice] text-body4 font-medium text-white">
-                Terima Tantangan
+              <p className="px-1 font-[alice] text-body3 font-medium text-white">
+                Lanjut
               </p>
             </div>
           )}
@@ -343,10 +343,9 @@ export const OnBoarding = ({
           isCard ? "-bottom-20 -translate-y-80" : "-bottom-20"
         }`}
       >
-        <p className="absolute w-full p-14 text-body3 font-thin">
-          Tidak ada hal yang cuma-cuma di sirkel kami. Buktikan bahwa kamu
-          memang yang terpilih yang bisa menyelesaikan tantangan ini. Seberapa
-          tangguh kamu?
+        <p className="absolute flex w-full items-center px-14  pt-20 text-body3 font-thin">
+          {`"Rossi naek motor lama itungannya kerja. Kita nark motor lama mah baru
+          berangkat kerja, belom kerjanya"`}
         </p>
         <img src={card}></img>
       </div>

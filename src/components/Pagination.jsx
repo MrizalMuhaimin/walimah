@@ -28,7 +28,11 @@ export const Pagination = ({
 
     if (page > 3) {
       if (totalPage - page < 4) {
-        setStartPage(totalPage - 5);
+        if (totalPage === 4) {
+          setStartPage(1);
+        } else {
+          setStartPage(totalPage - 5);
+        }
       } else {
         setStartPage(page - 2);
       }
@@ -109,7 +113,13 @@ export const Pagination = ({
                   );
                 }}
                 className={`relative z-10 inline-flex items-center rounded-sm px-2 py-0.5  text-body4 font-semibold text-coklat800 focus:z-20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline focus-visible:outline-indigo-600 ${
-                  endPage - 2 === active && endPage != 5 ? "bg-coklat200" : ""
+                  (endPage == 5
+                    ? endPage - 1
+                    : endPage == 4
+                    ? endPage
+                    : endPage - 2) === active && endPage != 5
+                    ? "bg-coklat200"
+                    : ""
                 }`}
               >
                 {endPage == 5
