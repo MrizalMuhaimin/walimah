@@ -45,21 +45,23 @@ export const MainBottomSection = ({
   const [totalPage, setTotalPage] = useState(1);
 
   const setVidioReminder = async () => {
-    try {
-      await videoReminder(dataInvitation.user.id);
-      setIsUpdateDataUser(!isUpdateDataUser);
-      toast.success('Pengingat telah dikirim ke nomor WhatsApp.', {
-        position: "top-center",
-        autoClose: 4000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
-    } catch (error) {
-      console.log("error");
+    if (dataInvitation?.user.is_video_reminder_sent != "2") {
+      try {
+        await videoReminder(dataInvitation.user.id);
+        setIsUpdateDataUser(!isUpdateDataUser);
+        toast.success("Pengingat telah dikirim ke nomor WhatsApp.", {
+          position: "top-center",
+          autoClose: 4000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      } catch (error) {
+        console.log("error");
+      }
     }
   };
 
@@ -118,30 +120,32 @@ export const MainBottomSection = ({
   };
 
   const setRsvp = async () => {
-    try {
-      const data = {
-        is_attending: isAttending === "true" ? true : false,
-        people_count: cPeople,
-      };
+    if (!isDisableRSVC) {
+      try {
+        const data = {
+          is_attending: isAttending === "true" ? true : false,
+          people_count: cPeople,
+        };
 
-      const response = await createRsvp(dataInvitation.user.id, data);
-      if (response?.data?.message === "success") {
-        setIsUpdateDataUser(!isUpdateDataUser);
-        console.log("response");
-        toast.success("Konfirmasi kehadiran berhasil.", {
-          position: "top-center",
-          autoClose: 4000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
+        const response = await createRsvp(dataInvitation.user.id, data);
+        if (response?.data?.message === "success") {
+          setIsUpdateDataUser(!isUpdateDataUser);
+          console.log("response");
+          toast.success("Konfirmasi kehadiran berhasil.", {
+            position: "top-center",
+            autoClose: 4000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+        }
+      } catch (error) {
+        setDataMyComment("");
+        console.log("error");
       }
-    } catch (error) {
-      setDataMyComment("");
-      console.log("error");
     }
   };
 
@@ -203,8 +207,7 @@ export const MainBottomSection = ({
   const getComments = async () => {
     const params = {
       limit: 10,
-      page
-
+      page,
     };
     const response = await comments(dataInvitation.user.id, params);
     const dataRes = response?.data?.items || [];
@@ -393,11 +396,11 @@ export const MainBottomSection = ({
             Harap simpan Kode QR reservasi berikut
           </p>
         </div>
+        <img src={leaf3} className="lifeLeft absolute -bottom-24 left-0"></img>
         <img
-          src={leaf3}
-          className="absolute -bottom-24 left-0 lifeLeft"
+          src={leaf2}
+          className="lifeRight absolute -bottom-24 right-0"
         ></img>
-        <img src={leaf2} className="absolute -bottom-24 right-0 lifeRight"></img>
       </div>
     );
   };
@@ -673,7 +676,7 @@ export const MainBottomSection = ({
           </p>
           <img
             src={cloud3}
-            className="absolute cloud -left-20 bottom-2 -scale-x-100"
+            className="cloud absolute -left-20 bottom-2 -scale-x-100"
           ></img>
         </div>
         <img src={streetMrt2} className="w-full object-fill"></img>
