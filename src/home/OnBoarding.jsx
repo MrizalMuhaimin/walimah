@@ -5,6 +5,8 @@ import union from "./../assets/img/union.svg";
 import logoAA from "./../assets/img/logoAA.svg";
 import lampLeft from "./../assets/img/lampLeft.svg";
 import lampRight from "./../assets/img/lampRight.svg";
+import joke from "./../assets/img/joke.jpg";
+
 import card from "./../assets/img/card.svg";
 import { ReactComponent as CheckCircle } from "./../assets/img/checkCircle.svg";
 
@@ -275,6 +277,10 @@ export const OnBoarding = ({
             {warning}
           </p>
         )}
+        {showName && <div className="flex justify-center w-full">
+        <img src={joke} style={{ height:'120px', objectFit:'fit'}} className='pt-3 text-center'/>
+        </div>}
+        
       </div>
     );
   };
@@ -344,8 +350,7 @@ export const OnBoarding = ({
         }`}
       >
         <p className="absolute flex w-full items-center px-14  pt-20 text-body3 font-thin">
-          {`"Rossi naek motor lama itungannya kerja. Kita nark motor lama mah baru
-          berangkat kerja, belom kerjanya"`}
+          {`"Rossi naek motor lama, itungannya kerja. Kita naek motor lama mah baru berangkat kerja, belom kerjanya :)"`}
         </p>
         <img src={card}></img>
       </div>
