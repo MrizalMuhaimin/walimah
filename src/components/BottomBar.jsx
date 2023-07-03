@@ -5,7 +5,7 @@ import { ReactComponent as QRLogo } from "../assets/img/qr.svg";
 export const BottomBar = ({ section, onClickTab, width }) => {
   return (
     <div
-      className="sticky bottom-0 z-50 flex h-11 w-full justify-center bg-white shadow-[0px_-4px_24px_0px_rgba(0,0,0,0.15)]"
+      className="fixed bottom-0 z-50 flex h-11 w-full justify-center bg-white shadow-[0px_-4px_24px_0px_rgba(0,0,0,0.15)]"
       style={{ width: `${width}px` }}
     >
       <div className="flex w-full justify-between">
