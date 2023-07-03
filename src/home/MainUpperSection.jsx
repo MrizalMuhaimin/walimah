@@ -89,7 +89,7 @@ export const MainUpperSection = ({
           </div>
           <div className="w-72">
             <p className="text-center font-[alice] text-body3  font-normal text-coklat700">
-              Sebagai apresiasi, kami mengundangmu untuk hadir pada pernikahan
+              Sebagai apresiasi, kami mengundangmu untuk hadir pada pernikahan kami
             </p>
           </div>
         </div>

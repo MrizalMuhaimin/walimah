@@ -426,7 +426,7 @@ export const MainBottomSection = ({
             <p className="font-[alice] text-body4 font-medium text-steel700">
               Kami tidak berkenan menerima karangan bunga secara fisik. Namun,{" "}
               <b>kami sangat menantikan ucapan berupa foto atau video</b> yang
-              akan ditampilkan pada hari pernikajan
+              akan ditampilkan pada hari pernikahan
             </p>
           </div>
         </div>
