@@ -1,20 +1,21 @@
 import { useState } from "react";
 import tent1 from "./../assets/img/tent1.svg";
+import quiz from "./../assets/img/quiz.webp";
 
 export const Quiz = ({ setStatePage = () => {} }) => {
   const [indexSelected, setIndexSelected] = useState(-1);
 
   const listAnswer = [
     {
-      q: "A",
+      q: "Di kepala ayamnya",
       status: false,
     },
     {
-      q: "B",
+      q: "Mungkin ketinggalan di rumah",
       status: false,
     },
     {
-      q: "C",
+      q: "Ayam jantan mana ada sih yang Bertelor :)",
       status: true,
     },
   ];
@@ -28,14 +29,14 @@ export const Quiz = ({ setStatePage = () => {} }) => {
 
   const header = () => {
     return (
-      <div className="px-6 pt-6">
+      <div className="px-6 pt-6 text-center">
         <p className="font-[tanPearl] text-header1 font-medium text-steel700 ">
           Jawab ini dulu!
         </p>
         <div className="ml-auto mr-auto w-72 text-center">
           <p className="font-[alice] text-body3 font-medium">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In orci
-            est, ultrices sed tempor eu, sagittis id erat
+            Rossi naek motor lama itungannya kerja. Kita naek motor lama mah
+            baru berangkat kerja. Belom kerjanya :
           </p>
         </div>
       </div>
@@ -66,11 +67,11 @@ export const Quiz = ({ setStatePage = () => {} }) => {
     return (
       <div className="px-6 pt-3 ">
         <div className="rounded-md bg-coklat100 p-3 drop-shadow">
-          <img src="" style={{ width: "288px", height: "138px" }}></img>
+          <img src={quiz} style={{ width: "288px", height: "138px" }}></img>
           <div className="ml-auto mr-auto w-72 pb-2 pt-2 text-center">
             <p className="font-[alice] text-body3 font-medium">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In orci
-              est, ultrices sed tempor eu, sagittis id erat
+              Ada ayam jantan palanya ada di amerika ekornya di Afrika,
+              sayapnya di Jakarta, matanya ada di Brazil, telurnya ada di mana?
             </p>
           </div>
           <div className="flex flex-col space-y-2">

@@ -62,7 +62,7 @@ export const MainBottomSection = ({
       link.setAttribute("download", `qr_${dataInvitation.user.name}.png`);
       document.body.appendChild(link);
       link.click();
-      link.remove();
+      link.remove();  
     } catch (error) {
       console.log("error");
     }
@@ -151,6 +151,8 @@ export const MainBottomSection = ({
   const getComments = async () => {
     const params = {
       limit: 10,
+      page
+
     };
     const response = await comments(dataInvitation.user.id, params);
     const dataRes = response?.data?.items || [];
@@ -200,7 +202,7 @@ export const MainBottomSection = ({
     }
   };
   const onChangeNumber = (type = "+") => {
-    if (isAttending == "true" && isAttending) {
+    if (isAttending == "true" && isAttending && !isDisableRSVC) {
       if (type === "+") {
         return setCPeople(cPeople + 1);
       }
