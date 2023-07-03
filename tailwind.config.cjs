@@ -85,6 +85,18 @@ module.exports = {
         blueGradient:
           "linear-gradient(180deg, #1D3549 10%, #396A93 15%, #4682B4 100%)",
       },
+      // that is animation class
+      animation: {
+        fade: "fadeOut 5s ease-in-out",
+      },
+
+      // that is actual animation
+      keyframes: (theme) => ({
+        fadeOut: {
+          "0%": { backgroundColor: "#FFFFFF" },
+          "100%": { backgroundColor: theme("colors.transparent") },
+        },
+      }),
     },
   },
   plugins: [],

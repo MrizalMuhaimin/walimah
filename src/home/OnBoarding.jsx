@@ -57,7 +57,6 @@ export const OnBoarding = ({
     );
     const dataRes = response?.data || {};
     if (dataRes?.message == "success") {
-      console.log(dataRes.message);
       updateDataInvitationByNumber(dataInvitation?.invitation?.id, number);
       toast.success("Nomor WhatsApp berhasil disimpan.", {
         position: "top-center",
@@ -71,7 +70,6 @@ export const OnBoarding = ({
       });
       setIsNumber(false);
     } else {
-      console.log(dataRes.message);
       createNewUser();
     }
   };
@@ -104,7 +102,6 @@ export const OnBoarding = ({
         }
       );
     } else {
-      console.log(dataRes.message);
       setWarning(dataRes?.message);
     }
   };
@@ -277,10 +274,15 @@ export const OnBoarding = ({
             {warning}
           </p>
         )}
-        {showName && <div className="flex justify-center w-full">
-        <img src={joke} style={{ height:'120px', objectFit:'fit'}} className='pt-3 text-center'/>
-        </div>}
-        
+        {showName && (
+          <div className="flex w-full justify-center">
+            <img
+              src={joke}
+              style={{ height: "120px", objectFit: "fit" }}
+              className="pt-3 text-center"
+            />
+          </div>
+        )}
       </div>
     );
   };

@@ -84,7 +84,7 @@ export const MainUpperSection = ({
               {dataInvitation?.invitation?.type === "GROUP"
                 ? `${dataInvitation?.invitation?.name} - `
                 : ""}{" "}
-              {dataInvitation?.user?.name} !
+              {dataInvitation?.user?.name + "!"}
             </p>
           </div>
           <div className="w-72">

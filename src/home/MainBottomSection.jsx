@@ -133,7 +133,6 @@ export const MainBottomSection = ({
         const response = await createRsvp(dataInvitation.user.id, data);
         if (response?.data?.message === "success") {
           setIsUpdateDataUser(!isUpdateDataUser);
-          console.log("response");
           toast.success("Konfirmasi kehadiran berhasil.", {
             position: "top-center",
             autoClose: 4000,
@@ -275,11 +274,9 @@ export const MainBottomSection = ({
   };
 
   const onChangeAtt = (e) => {
-    console.log(e.target.value);
     setIsAttending(e.target.value);
     if (e.target.value == "false") {
       setCPeople(0);
-      console.log(e.target.value);
     } else {
       setCPeople(1);
     }

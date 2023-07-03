@@ -4,7 +4,6 @@ import { MainBottomSection } from "./MainBottomSection";
 import { MainUpperSection } from "./MainUpperSection";
 import { BottomBar } from "../components/BottomBar";
 import { MusicSideBar } from "../components/MusicSideBar";
-import useWindowDimensions from "../helpers/hooks/useWindowDimensions";
 
 export const Main = ({
   dataInvitation = {},
@@ -23,8 +22,7 @@ export const Main = ({
   const [activeSection, setActiveSection] = useState("CALENDAR");
 
   const [isMute, setIsMute] = useState(false);
-
-  const { width: windowWidth } = useWindowDimensions();
+  const [isIntersecting, setIsIntersecting] = useState(false);
 
   useEffect(() => {
     setHeightCalendarSection(
@@ -76,8 +74,25 @@ export const Main = ({
   };
 
   useEffect(() => {
-    console.log(windowWidth > 480 ? windowWidth - 480 : 0);
-  }, [windowWidth]);
+    const observer = new IntersectionObserver(([entry]) => {
+      setIsIntersecting(entry.isIntersecting);
+    });
+    observer.observe(refCalendarSection.current);
+
+    return () => observer.disconnect();
+  }, [isIntersecting]);
+
+  useEffect(() => {
+    if (isIntersecting) {
+      refCalendarSection.current.querySelectorAll("div").forEach((el) => {
+        el.classList.add("fade-in-image");
+      });
+    } else {
+      refCalendarSection.current.querySelectorAll("div").forEach((el) => {
+        el.classList.remove("fade-in-image");
+      });
+    }
+  }, [isIntersecting]);
 
   return (
     <div

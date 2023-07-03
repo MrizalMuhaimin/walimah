@@ -64,18 +64,17 @@ body {
 }
 
 @keyframes mymove2 {
-    50% {
-      transform: rotate(-3deg);
-    }
+  50% {
+    transform: rotate(-3deg);
   }
+}
 
 .lifeRight {
-    animation: mymove 5s infinite;
+  animation: mymove 5s infinite;
 }
 
 .lifeLeft {
-    animation: mymove2 5s infinite;
-
+  animation: mymove2 5s infinite;
 }
 .cloud {
   transform: translatey(0px);
@@ -85,4 +84,17 @@ body {
 .cloud2 {
   transform: translatey(0px);
   animation: float2 6s ease-in-out infinite;
+}
+
+.fade-in-image {
+  animation: fadeIn 5s;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
