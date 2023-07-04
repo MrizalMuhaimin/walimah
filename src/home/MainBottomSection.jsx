@@ -93,30 +93,44 @@ export const MainBottomSection = ({
   };
 
   const createComments = async () => {
-    try {
-      const data = {
-        comment: dataMyComment,
-      };
-
-      const response = await creteComment(dataInvitation.user.id, data);
-      if (response?.data?.message === "success") {
-        setDataMyComment(response?.data?.comment);
-        setIdMyComment(response?.data?.comment_id);
-        toast.success("Ucapan berhasil dibuat.", {
-          position: "top-center",
-          autoClose: 4000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
+    if(dataMyComment.length > 0) {
+      try {
+        const data = {
+          comment: dataMyComment,
+        };
+  
+        const response = await creteComment(dataInvitation.user.id, data);
+        if (response?.data?.message === "success") {
+          setDataMyComment(response?.data?.comment);
+          setIdMyComment(response?.data?.comment_id);
+          toast.success("Ucapan berhasil dibuat.", {
+            position: "top-center",
+            autoClose: 4000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+        }
+      } catch (error) {
+        setDataMyComment("");
+        console.log("error");
       }
-    } catch (error) {
-      setDataMyComment("");
-      console.log("error");
+    } else {
+      toast.warning("Ucapan tidak boleh kosong.", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     }
+    
   };
 
   const setRsvp = async () => {
@@ -492,7 +506,7 @@ export const MainBottomSection = ({
       <div
         key={val?.id}
         id={val?.id}
-        style={{ height: 142 }}
+        style={{ minHeight: 142 }}
         className="rounded  border border-coklat400 p-2 "
       >
         <p style={{ lineHeight: "12px" }} className="text-body2 text-coklat700">
