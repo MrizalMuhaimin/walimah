@@ -28,9 +28,9 @@ export const Pagination = ({
 
     if (page > 3) {
       if (totalPage - page < 4) {
-        if (totalPage === 4) {
+        if (totalPage == 4) {
           setStartPage(1);
-        } if (totalPage === 5) {
+        } else if (totalPage == 5) {
           setStartPage(1);
         }else {
           setStartPage(totalPage - 5);
