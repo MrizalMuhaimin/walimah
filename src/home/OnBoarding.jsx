@@ -5,7 +5,7 @@ import union from "./../assets/img/union.svg";
 import logoAA from "./../assets/img/logoAA.svg";
 import lampLeft from "./../assets/img/lampLeft.svg";
 import lampRight from "./../assets/img/lampRight.svg";
-import joke from "./../assets/img/joke.jpg";
+// import joke from "./../assets/img/joke.jpg";
 
 import card from "./../assets/img/card.svg";
 import { ReactComponent as CheckCircle } from "./../assets/img/checkCircle.svg";
@@ -303,7 +303,7 @@ export const OnBoarding = ({
             {warning}
           </p>
         )}
-        {showName && (
+        {/* {showName && (
           <div className="flex w-full justify-center">
             <img
               src={joke}
@@ -311,7 +311,7 @@ export const OnBoarding = ({
               className="pt-3 text-center"
             />
           </div>
-        )}
+        )} */}
       </div>
     );
   };
