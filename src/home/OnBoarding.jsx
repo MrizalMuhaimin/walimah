@@ -32,26 +32,8 @@ export const OnBoarding = ({
     if (val.startsWith("+")) {
       if (val.length == 1) {
         setNumber(val);
-      } else if (val.length == 2) {
-        if (val.startsWith("+6")) {
-          setNumber(val);
-        } else {
-          setNumber(val.slice(0, val.length - 1));
-        }
-      } else if (val.length == 3) {
-        if (val.startsWith("+62")) {
-          setNumber(val);
-        } else {
-          setNumber(val.slice(0, val.length - 1));
-        }
-      } else if (val.length == 4) {
-        if (val.startsWith("+628")) {
-          setNumber(val);
-        } else {
-          setNumber(val.slice(0, val.length - 1));
-        }
       } else {
-        const regexString = '^(\\+62)8[0-9][0-9]{0,11}$';
+        const regexString = '^(\\+)[0-9][0-9]{0,17}$';
         const regexp = new RegExp(regexString);
         if (regexp.test(val)) {
           setNumber(val);
@@ -64,10 +46,14 @@ export const OnBoarding = ({
       setNumber("");
     }
 
-    if (val.toString().startsWith("+62")) {
+    const regexString = '^(\\+)[0-9][0-9]{0,17}$';
+    const regexp = new RegExp(regexString);
+    if (regexp.test(val)) {
       setWarning("");
+    } else if (val.length == 1) {
+      setWarning("Nomor harus diawali dengan kode negara (+62, +81, dst.)");
     } else {
-      setWarning("Format nomer harus +62");
+      setWarning("");
     }
   };
 
